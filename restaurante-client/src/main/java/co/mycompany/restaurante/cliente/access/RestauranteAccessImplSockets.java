@@ -1,11 +1,13 @@
-package restaurante.cliente.access;
+package co.mycompany.restaurante.cliente.access;
 
 import restaurante.commons.infra.Protocol;
 import restaurante.commons.domain.Restaurante;
 import restaurante.commons.infra.JsonError;
-import restaurante.cliente.infra.SocketRestaurante;
+import co.mycompany.restaurante.cliente.infra.SocketRestaurante;
+import co.mycompany.restaurante.commons.domain.Plato;
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import restaurante.commons.domain.Restaurante;
@@ -16,7 +18,7 @@ import restaurante.commons.domain.Restaurante;
  *
  * @author Libardo Pantoja, Julio A. Hurtado
  */
-public class RestauranteAccessImplSockets implements IRestauranteAccessRestaurante {
+public class RestauranteAccessImplSockets implements IRestauranteAccess {
 
     /**
      * El servicio utiliza un socket para comunicarse con la aplicación server
@@ -26,50 +28,6 @@ public class RestauranteAccessImplSockets implements IRestauranteAccessRestauran
     public RestauranteAccessImplSockets() {
         mySocket = new SocketRestaurante();
     }
-
-    /**
-     * Busca un Restaurante. Utiliza socket para pedir el servicio al servidor
-     *
-     * @param id cedula del cliente
-     * @return Objeto Restaurante
-     * @throws Exception cuando no pueda conectarse con el servidor
-     */
-
-    public Restaurante findRestaurante(String id) throws Exception {
-        String jsonResponse = null;
-        String requestJson = findRestauranteRequestJson(id);
-        try {
-            mySocket.connect();
-            jsonResponse = mySocket.sendStream(requestJson);
-            mySocket.closeStream();
-            mySocket.disconnect();
-
-        } catch (IOException ex) {
-            Logger.getLogger(RestauranteAccessImplSockets.class.getName()).log(Level.SEVERE, "No hubo conexión con el servidor", ex);
-        }
-        if (jsonResponse == null) {
-            throw new Exception("No se pudo conectar con el servidor. Revise la red o que el servidor esté escuchando. ");
-        } else {
-            if (jsonResponse.contains("error")) {
-                //Devolvió algún error
-                Logger.getLogger(RestauranteAccessImplSockets.class.getName()).log(Level.INFO, jsonResponse);
-                throw new Exception(extractMessages(jsonResponse));
-            } else {
-                //Encontró el customer
-                Restaurante customer = jsonToRestaurante(jsonResponse);
-                return customer;
-            }
-        }
-
-    }
-
-    /**
-     * Crea un Restaurante. Utiliza socket para pedir el servicio al servidor
-     *
-     * @param customer cliente de la agencia de viajes
-     * @return devuelve la cedula del cliente creado
-     * @throws Exception error crear el cliente
-     */
 
     public String createRestaurante(Restaurante customer) throws Exception {
         String jsonResponse = null;
@@ -129,16 +87,23 @@ public class RestauranteAccessImplSockets implements IRestauranteAccessRestauran
      * Crea una solicitud json para ser enviada por el socket
      *
      *
-     * @param idRestaurante identificación del cliente
-     * @return solicitud de consulta del cliente en formato Json, algo como:
-     * {"resource":"customer","action":"get","parameters":[{"name":"id","value":"98000001"}]}
+     * @param menuSemanal lista de platos nuevos
+     * @return solicitud de creacion de menu:
+     * {"resource":"restaurante","action":"set","parameters":[{"percio plato":"int","descripcion":"String","nombre":"String"}]}
      */
-    private String findRestauranteRequestJson(String idRestaurante) {
+    private String addMenuSemanalRequestJson(ArrayList<Plato> menuSemanal) {
 
         Protocol protocol = new Protocol();
-        protocol.setResource("customer");
-        protocol.setAction("get");
-        protocol.addParameter("id", idRestaurante);
+        protocol.setResource("restaurante");
+        protocol.setAction("set");
+        for (int i = 0; i < menuSemanal.size(); i++) {
+            protocol.addParameter("Precio plato "+ Integer.toString(i), 
+                    Integer.toString(menuSemanal.get(i).getAtrPrecio()));
+            protocol.addParameter("Descriipcion plato "+ Integer.toString(i), 
+                    menuSemanal.get(i).getAtrDescripcion());
+            protocol.addParameter("Nombre plato "+ Integer.toString(i), 
+                    menuSemanal.get(i).getAtrNombre());
+        }
 
         Gson gson = new Gson();
         String requestJson = gson.toJson(protocol);
@@ -190,12 +155,7 @@ public class RestauranteAccessImplSockets implements IRestauranteAccessRestauran
     }
 
     @Override
-    public Customer findCustomer(String id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String createCustomer(Customer customer) throws Exception {
+    public ArrayList addMenuSemanal(ArrayList<Plato> menuSemanal) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

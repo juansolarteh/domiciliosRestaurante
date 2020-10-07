@@ -1,7 +1,8 @@
-package restaurante.cliente.domain.services;
+package co.mycompany.restaurante.cliente.domain.services;
 
-import restaurante.commons.domain.Restaurante;
-import restaurante.cliente.access.IRestauranteAccessRestaurante;
+import co.mycompany.restaurante.commons.domain.Restaurante;
+import co.mycompany.restaurante.cliente.access.IRestauranteAccess;
+import java.util.ArrayList;
 
 /**
  * Es una fachada para comunicar la presentación con el
@@ -11,13 +12,13 @@ import restaurante.cliente.access.IRestauranteAccessRestaurante;
  */
 public class RestauranteService {
 
-    private final IRestauranteAccessRestaurante service;
+    private final IRestauranteAccess service;
 
     /**
      * Constructor privado que evita que otros objetos instancien
      * @param service implementacion de tipo ICustomerService
      */
-    public RestauranteService(IRestauranteAccessRestaurante service) {
+    public RestauranteService(IRestauranteAccess service) {
         this.service = service;
     }
 
@@ -29,8 +30,8 @@ public class RestauranteService {
      * @throws java.lang.Exception la excepcio se lanza cuando no logra conexión
      * con el servidor
      */
-    public Customer findCustomer(String id) throws Exception {
-        return service.findCustomer(id);
+    public ArrayList addMenuSemana(String id) throws Exception {
+        return service.(id);
 
     }
     

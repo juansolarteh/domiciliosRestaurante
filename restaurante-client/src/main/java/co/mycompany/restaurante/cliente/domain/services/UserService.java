@@ -1,7 +1,7 @@
 
-package restaurante.cliente.domain.services;
+package co.mycompany.restaurante.cliente.domain.services;
 
-import restaurante.cliente.domain.User;
+import co.mycompany.restaurante.cliente.domain.User;
 
 /**
  * Servicio de usuarios del sistema

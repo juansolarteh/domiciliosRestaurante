@@ -1,6 +1,6 @@
-package restaurante.cliente.access;
+package co.mycompany.restaurante.cliente.access;
 
-import restaurante.commons.infra.Utilities;
+import co.mycompany.restaurante.commons.infra.Utilities;
 
 /**
  * Fabrica que se encarga de instanciar CustomerServiceImplSockets o cualquier
@@ -34,9 +34,9 @@ public class Factory {
      *
      * @return una clase hija de la abstracción IRepositorioClientes
      */
-    public IRestauranteAccessRestaurante getCustomerService() {
+    public IRestauranteAccess getCustomerService() {
 
-        IRestauranteAccessRestaurante result = null;
+        IRestauranteAccess result = null;
         String type = Utilities.loadProperty("customer.service");
 
         switch (type) {

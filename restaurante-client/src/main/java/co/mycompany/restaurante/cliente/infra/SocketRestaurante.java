@@ -1,6 +1,6 @@
-package restaurante.cliente.infra;
+package co.mycompany.restaurante.cliente.infra;
 
-import co.unicauca.travelagency.commons.infra.Utilities;
+import co.mycompany.restaurante.commons.infra.Utilities;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;

@@ -1,5 +1,5 @@
 
-package restaurante.cliente.infra;
+package co.mycompany.restaurante.cliente.infra;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;

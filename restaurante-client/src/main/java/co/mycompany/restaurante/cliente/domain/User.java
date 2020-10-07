@@ -1,4 +1,4 @@
-package restaurante.cliente.domain;
+package co.mycompany.restaurante.cliente.domain;
 
 /**
  * Representa un usuario que entra al sistema

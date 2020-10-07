@@ -21,6 +21,12 @@
             <artifactId>gson</artifactId>
             <version>1.4</version>
         </dependency>
+        <dependency>
+            <groupId>co.mycompany.restaurante.commons</groupId>
+            <artifactId>restaurante-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

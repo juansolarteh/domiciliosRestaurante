@@ -1,7 +1,7 @@
 
-package restaurante.cliente.infra;
+package co.mycompany.restaurante.cliente.infra;
 
-import restaurante.cliente.domain.User;
+import co.mycompany.restaurante.cliente.domain.User;
 
 /**
  * Esta pendiente implementar esta clase. Tendra la responsabilidad de cosas
