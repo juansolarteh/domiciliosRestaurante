@@ -12,6 +12,5 @@ public class RestauranteApplication {
     public static void main(String args[]){
         RestauranteServerSocket server = new RestauranteServerSocket();
         server.start();
-        //asa
     }
 }
