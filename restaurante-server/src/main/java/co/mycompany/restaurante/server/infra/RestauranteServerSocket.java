@@ -186,7 +186,7 @@ public class RestauranteServerSocket implements Runnable {
             regPlato.setAtrNombre(protocolRequest.getParameters().get(i).getValue());
             menuSemanal.add(regPlato);
         }
-        String response = service.addMenuSemanal(menuSemanal);
+        ArrayList response = service.addMenuSemanal(menuSemanal);
         output.println(response);
     }
 

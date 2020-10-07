@@ -36,7 +36,7 @@ public class RestauranteService {
      * @param id cedula
      * @return objeto tipo Restaurante
      */
-    public String addMenuSemanal(ArrayList<Plato> menuSemanal) {
+    public ArrayList addMenuSemanal(ArrayList<Plato> menuSemanal) {
         return repo.addMenuSemanal(menuSemanal);
     }
 
