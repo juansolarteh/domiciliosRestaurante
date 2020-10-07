@@ -14,7 +14,7 @@ public interface IRestauranteRepository {
      * @param id cedula del cliente
      * @return  objeto de tipo Customer
      */
-    public ArrayList addMenuSemanal(ArrayList<Plato> menuSemanal);
+    public ArrayList<String> addMenuSemanal(ArrayList<Plato> menuSemanal);
     
     
 }

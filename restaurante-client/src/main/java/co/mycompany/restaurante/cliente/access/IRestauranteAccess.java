@@ -11,5 +11,5 @@ import co.mycompany.restaurante.commons.domain.Restaurante;
  */
 public interface IRestauranteAccess {
 
-    public ArrayList addMenuSemanal(ArrayList<Plato> menuSemanal);
+    public ArrayList addMenuSemanal(ArrayList<Plato> menuSemanal)throws Exception;
 }

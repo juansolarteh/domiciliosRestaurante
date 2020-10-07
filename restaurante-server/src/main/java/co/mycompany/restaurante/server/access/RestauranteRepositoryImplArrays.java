@@ -37,7 +37,7 @@ public final class RestauranteRepositoryImplArrays implements IRestauranteReposi
     }
 
     @Override
-    public ArrayList addMenuSemanal(ArrayList<Plato> menuSemanal) {
+    public ArrayList<String> addMenuSemanal(ArrayList<Plato> menuSemanal) {
         try{
             restaurante.get(0).setAtrMenuSemanal(menuSemanal);
             ArrayList<String> nombresPlatos = new ArrayList<String>();

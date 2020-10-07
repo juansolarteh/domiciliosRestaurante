@@ -2,6 +2,7 @@ package co.mycompany.restaurante.cliente.domain.services;
 
 import co.mycompany.restaurante.commons.domain.Restaurante;
 import co.mycompany.restaurante.cliente.access.IRestauranteAccess;
+import co.mycompany.restaurante.commons.domain.Plato;
 import java.util.ArrayList;
 
 /**
@@ -30,14 +31,8 @@ public class RestauranteService {
      * @throws java.lang.Exception la excepcio se lanza cuando no logra conexión
      * con el servidor
      */
-    public ArrayList addMenuSemana(String id) throws Exception {
-        return service.(id);
+    public ArrayList addMenuSemana(ArrayList<Plato> menu) throws Exception {
+        return service.addMenuSemanal(menu);
 
     }
-    
-    public String createCustomer(Customer customer) throws Exception {
-        return service.createCustomer(customer);
-
-    }    
-
 }

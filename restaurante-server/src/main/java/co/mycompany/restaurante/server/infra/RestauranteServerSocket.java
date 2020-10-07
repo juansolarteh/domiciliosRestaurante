@@ -171,7 +171,7 @@ public class RestauranteServerSocket implements Runnable {
     }
 
     /**
-     * Procesa la solicitud de agregar un restaurante
+     * Procesa la solicitud de agregar un menuSemanal
      *
      * @param protocolRequest Protocolo de la solicitud
      */
