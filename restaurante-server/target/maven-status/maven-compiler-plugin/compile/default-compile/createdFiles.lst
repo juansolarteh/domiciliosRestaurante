@@ -1,6 +1,0 @@
-restaurante\server\access\IRestauranteRepository.class
-restaurante\server\access\Factory.class
-restaurante\server\domain\services\RestauranteService.class
-restaurante\server\app\RestauranteApplication.class
-restaurante\server\access\RestauranteRepositoryImplArrays.class
-restaurante\server\infra\RestauranteServerSocket.class
