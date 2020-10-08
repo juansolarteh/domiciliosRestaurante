@@ -29,6 +29,33 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
         mySocket = new SocketRestaurante();
     }
  
+    @Override
+    public String[] addMenuSemanal(ArrayList<Plato> menuSemanal)throws Exception {
+        String jsonResponse = null;
+        String requestJson = addMenuSemanalRequestJson(menuSemanal);
+        try {
+            mySocket.connect();
+            jsonResponse = mySocket.sendStream(requestJson);
+            mySocket.closeStream();
+            mySocket.disconnect();
+
+        } catch (IOException ex) {
+            Logger.getLogger(RestauranteAccessImplSockets.class.getName()).log(Level.SEVERE, "No hubo conexión con el servidor", ex);
+        }
+        if (jsonResponse == null) {
+            throw new Exception("No se pudo conectar con el servidor");
+        } else {
+
+            if (jsonResponse.contains("error")) {
+                //Devolvió algún error                
+                Logger.getLogger(RestauranteAccessImplSockets.class.getName()).log(Level.INFO, jsonResponse);
+                throw new Exception(extractMessages(jsonResponse));
+            } else {
+                //Agregó correctamente el menu, devuelve los nombres de los platos
+                return jsonResponse.split("/");
+            }
+        }
+    }
     
     /**
      * Extra los mensajes de la lista de errores
@@ -70,12 +97,12 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
         protocol.setResource("restaurante");
         protocol.setAction("set");
         for (int i = 0; i < menuSemanal.size(); i++) {
-            protocol.addParameter("Precio plato "+ Integer.toString(i), 
-                    Integer.toString(menuSemanal.get(i).getAtrPrecio()));
-            protocol.addParameter("Descriipcion plato "+ Integer.toString(i), 
-                    menuSemanal.get(i).getAtrDescripcion());
-            protocol.addParameter("Nombre plato "+ Integer.toString(i), 
-                    menuSemanal.get(i).getAtrNombre());
+            protocol.addParameter("Precio Plato " + Integer.toString(i)
+                    , Integer.toString(menuSemanal.get(i).getAtrPrecio()));
+            protocol.addParameter("Descripcion Plato " + Integer.toString(i)
+                    , menuSemanal.get(i).getAtrDescripcion());
+            protocol.addParameter("Nombre Plato " + Integer.toString(i)
+                    , menuSemanal.get(i).getAtrNombre());
         }
 
         Gson gson = new Gson();
@@ -93,39 +120,9 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
     private Restaurante jsonToRestaurante(String jsonRestaurante) {
 
         Gson gson = new Gson();
-        Restaurante customer = gson.fromJson(jsonRestaurante, Restaurante.class);
+        Restaurante restaurante = gson.fromJson(jsonRestaurante, Restaurante.class);
 
-        return customer;
+        return restaurante;
 
-    }
-
-    @Override
-    public ArrayList<String> addMenuSemanal(ArrayList<Plato> menuSemanal)throws Exception {
-        String jsonResponse = null;
-        String requestJson = addMenuSemanalRequestJson(menuSemanal);
-        try {
-            mySocket.connect();
-            jsonResponse = mySocket.sendStream(requestJson);
-            mySocket.closeStream();
-            mySocket.disconnect();
-
-        } catch (IOException ex) {
-            Logger.getLogger(RestauranteAccessImplSockets.class.getName()).log(Level.SEVERE, "No hubo conexión con el servidor", ex);
-        }
-        if (jsonResponse == null) {
-            throw new Exception("No se pudo conectar con el servidor");
-        } else {
-
-            if (jsonResponse.contains("error")) {
-                //Devolvió algún error                
-                Logger.getLogger(RestauranteAccessImplSockets.class.getName()).log(Level.INFO, jsonResponse);
-                throw new Exception(extractMessages(jsonResponse));
-            } else {
-                //Agregó correctamente, devuelve los nombres de los platos
-                ArrayList<String> nombrePlatos = new ArrayList<String>();
-                for (Plato plato : menuSemanal) nombrePlatos.add(plato.getAtrNombre());
-                return nombrePlatos;
-            }
-        }
     }
 }

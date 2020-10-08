@@ -30,10 +30,10 @@ public class RestauranteServiceTest {
         menu.add(regPlato2);
         IRestauranteRepository repo = Factory.getInstance().getRepository();
         RestauranteService instance = new RestauranteService(repo);
-        ArrayList nombresPlatos = instance.addMenuSemanal(menu);
-        assertEquals(null, nombresPlatos.get(0));
-        assertEquals("Nombre", nombresPlatos.get(1));
-        assertEquals(2, nombresPlatos.size());
+        String[] nombresPlatos = instance.addMenuSemanal(menu).split("/"); 
+        assertEquals("null", nombresPlatos[0]);
+        assertEquals("Nombre", nombresPlatos[1]);
+        assertEquals(2, nombresPlatos.length);
     }    
     
 }

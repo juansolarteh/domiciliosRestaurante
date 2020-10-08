@@ -31,7 +31,7 @@ public class RestauranteService {
      * @throws java.lang.Exception la excepcio se lanza cuando no logra conexión
      * con el servidor
      */
-    public ArrayList addMenuSemana(ArrayList<Plato> menu) throws Exception {
+    public String[] addMenuSemana(ArrayList<Plato> menu) throws Exception {
         return service.addMenuSemanal(menu);
 
     }

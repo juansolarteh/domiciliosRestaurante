@@ -177,8 +177,8 @@ public class RestauranteServerSocket implements Runnable {
      */
     private void processSetMenuSemanal(Protocol protocolRequest) {
         ArrayList <Plato> menuSemanal= new ArrayList<Plato>();
-        Plato regPlato = new Plato();
         for (int i = 0; i < protocolRequest.getParameters().size(); i++){
+            Plato regPlato = new Plato();
             regPlato.setAtrPrecio(Integer.parseInt(protocolRequest.getParameters().get(i).getValue()));
             i++;
             regPlato.setAtrDescripcion(protocolRequest.getParameters().get(i).getValue());
@@ -186,7 +186,7 @@ public class RestauranteServerSocket implements Runnable {
             regPlato.setAtrNombre(protocolRequest.getParameters().get(i).getValue());
             menuSemanal.add(regPlato);
         }
-        ArrayList response = service.addMenuSemanal(menuSemanal);
+        String response = service.addMenuSemanal(menuSemanal);
         output.println(response);
     }
 
