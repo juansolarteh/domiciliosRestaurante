@@ -30,7 +30,7 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
     }
  
     @Override
-    public String[] addMenuSemanal(ArrayList<Plato> menuSemanal)throws Exception {
+    public String addMenuSemanal(ArrayList<Plato> menuSemanal)throws Exception {
         String jsonResponse = null;
         String requestJson = addMenuSemanalRequestJson(menuSemanal);
         try {
@@ -52,7 +52,7 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
                 throw new Exception(extractMessages(jsonResponse));
             } else {
                 //Agregó correctamente el menu, devuelve los nombres de los platos
-                return jsonResponse.split("/");
+                return jsonResponse;
             }
         }
     }

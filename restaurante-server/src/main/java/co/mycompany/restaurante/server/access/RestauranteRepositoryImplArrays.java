@@ -44,9 +44,9 @@ public final class RestauranteRepositoryImplArrays implements IRestauranteReposi
             for (int i = 0; i < menuSemanal.size(); i++) {
                 nombresPlatos += menuSemanal.get(i).getAtrNombre() + "/";
             }
-            return nombresPlatos;
+            return "correcto";
         }catch(Exception e){
-            return null;
+            return e.toString();
         }      
     }
 }
