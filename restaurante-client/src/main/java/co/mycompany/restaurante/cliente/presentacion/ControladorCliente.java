@@ -33,6 +33,7 @@ public class ControladorCliente {
         int posicion = 0;
         for (String nombre : nombrePlato){
             Plato plato = new Plato(precioPlato.get(posicion),descripcionPlato.get(posicion),nombre);
+            posicion++;
             menu.add(plato);
         }
         return restauranteService.addMenuSemana(menu); 
