@@ -1,8 +1,8 @@
 package co.mycompany.restaurante.cliente.access;
 
-import restaurante.commons.infra.Protocol;
-import restaurante.commons.domain.Restaurante;
-import restaurante.commons.infra.JsonError;
+import co.mycompany.restaurante.commons.infra.Protocol;
+import co.mycompany.restaurante.commons.domain.Restaurante;
+import co.mycompany.restaurante.commons.infra.JsonError;
 import co.mycompany.restaurante.cliente.infra.SocketRestaurante;
 import co.mycompany.restaurante.commons.domain.Plato;
 import com.google.gson.Gson;
@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import restaurante.commons.domain.Restaurante;
+import co.mycompany.restaurante.commons.domain.Restaurante;
 
 /**
  * Servicio de Cliente. Permite hacer el CRUD de clientes solicitando los
