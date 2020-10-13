@@ -38,4 +38,8 @@ public class ControladorCliente {
         }
         return restauranteService.addMenuSemana(menu); 
     }
+    
+    public ArrayList<Plato> getMenuSemanal() throws Exception{       
+        return restauranteService.getMenu("menuSemanal");
+    }
 }

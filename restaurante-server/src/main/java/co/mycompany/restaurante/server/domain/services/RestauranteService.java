@@ -39,5 +39,9 @@ public class RestauranteService {
     public String addMenuSemanal(ArrayList<Plato> menuSemanal) {
         return repo.addMenuSemanal(menuSemanal);
     }
+    
+    public ArrayList<Plato> getMenuSemanal(){
+        return repo.getMenuSemanal();
+    }
 
 }

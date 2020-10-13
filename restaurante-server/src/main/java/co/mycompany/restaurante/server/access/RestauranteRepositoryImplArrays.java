@@ -40,13 +40,14 @@ public final class RestauranteRepositoryImplArrays implements IRestauranteReposi
     public String addMenuSemanal(ArrayList<Plato> menuSemanal) {
         try{
             restaurante.get(0).setAtrMenuSemanal(menuSemanal);
-            String nombresPlatos = "";
-            for (int i = 0; i < menuSemanal.size(); i++) {
-                nombresPlatos += menuSemanal.get(i).getAtrNombre() + "/";
-            }
             return "correcto";
         }catch(Exception e){
             return e.toString();
         }      
+    }
+
+    @Override
+    public ArrayList<Plato> getMenuSemanal() {
+        return restaurante.get(0).getAtrMenuSemanal();
     }
 }

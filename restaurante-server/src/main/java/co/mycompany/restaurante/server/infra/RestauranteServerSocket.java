@@ -165,6 +165,9 @@ public class RestauranteServerSocket implements Runnable {
                     processSetMenuSemanal(protocolRequest);
 
                 }
+                else if (protocolRequest.getAction().equals("get")) {
+                    processGetMenuSemanal(protocolRequest);
+                }
                 break;
         }
 
@@ -188,6 +191,20 @@ public class RestauranteServerSocket implements Runnable {
         }
         String response = service.addMenuSemanal(menuSemanal);
         output.println(response);
+    }
+    
+    /**
+     * Procesa la solicitud de dar el menuSemanal
+     *
+     * @param protocolRequest Protocolo de la solicitud
+     */
+    private void processGetMenuSemanal(Protocol protocolRequest) {  
+        ArrayList<Plato> menuSemanal = service.getMenuSemanal();
+        if (menuSemanal.size() == 0) {
+            output.println("menu semanal vacio");
+        } else {
+            output.println(objectToJSON(menuSemanal));
+        }
     }
 
     /**
@@ -246,9 +263,9 @@ public class RestauranteServerSocket implements Runnable {
      * @param restaurante cliente
      * @return restaurante en formato json
      */
-    private String objectToJSON(Restaurante restaurante) {
+    private String objectToJSON(ArrayList<Plato> menu) {
         Gson gson = new Gson();
-        String strObject = gson.toJson(restaurante);
+        String strObject = gson.toJson(menu);
         return strObject;
     }
 

@@ -33,6 +33,9 @@ public class RestauranteService {
      */
     public String addMenuSemana(ArrayList<Plato> menu) throws Exception {
         return service.addMenuSemanal(menu);
-
+    }
+    
+    public ArrayList<Plato> getMenu(String tipoMenu) throws Exception{
+        return service.getMenu(tipoMenu);
     }
 }

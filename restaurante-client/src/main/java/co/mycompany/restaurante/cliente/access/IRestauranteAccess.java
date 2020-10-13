@@ -12,4 +12,6 @@ import co.mycompany.restaurante.commons.domain.Restaurante;
 public interface IRestauranteAccess {
 
     public String addMenuSemanal(ArrayList<Plato> menuSemanal)throws Exception;
+    
+    public ArrayList<Plato> getMenu(String tipoMenu)throws Exception;
 }

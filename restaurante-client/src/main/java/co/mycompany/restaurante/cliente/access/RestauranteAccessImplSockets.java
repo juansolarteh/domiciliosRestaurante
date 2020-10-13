@@ -57,6 +57,33 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
         }
     }
     
+    @Override
+    public ArrayList<Plato> getMenu(String tipoMenu)throws Exception {
+        String jsonResponse = null;
+        String requestJson = getMenuRequestJson(tipoMenu);
+        try {
+            mySocket.connect();
+            jsonResponse = mySocket.sendStream(requestJson);
+            mySocket.closeStream();
+            mySocket.disconnect();
+
+        } catch (IOException ex) {
+            Logger.getLogger(RestauranteAccessImplSockets.class.getName()).log(Level.SEVERE, "No hubo conexión con el servidor", ex);
+        }
+        if (jsonResponse == null) {
+            throw new Exception("No se pudo conectar con el servidor");
+        } else {
+            if (jsonResponse.contains("error")) {
+                //Devolvió algún error                
+                Logger.getLogger(RestauranteAccessImplSockets.class.getName()).log(Level.INFO, jsonResponse);
+                throw new Exception(extractMessages(jsonResponse));
+            } else {
+                //Agregó correctamente el menu, devuelve los nombres de los platos
+                return jsonToArray(jsonResponse);
+            }
+        }
+    }
+    
     /**
      * Extra los mensajes de la lista de errores
      * @param jsonResponse lista de mensajes json
@@ -110,6 +137,19 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
 
         return requestJson;
     }
+    
+    private String getMenuRequestJson(String tipoMenu) {
+
+        Protocol protocol = new Protocol();
+        protocol.setResource("restaurante");
+        protocol.setAction("get");
+        protocol.addParameter("menu", tipoMenu);
+
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(protocol);
+
+        return requestJson;
+    }
 
     /**
      * Convierte jsonRestaurante, proveniente del server socket, de json a un
@@ -124,5 +164,17 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
 
         return restaurante;
 
+    }
+    
+    private Plato jsonToMenu(String jsonMenu){
+        Gson gson = new Gson();
+        Plato plato = gson.fromJson(jsonMenu, Plato.class);
+        return plato;
+    }
+    
+    private ArrayList jsonToArray(String jsonArray){
+        Gson gson = new Gson();
+        ArrayList array = gson.fromJson(jsonArray, ArrayList.class);
+        return array;
     }
 }

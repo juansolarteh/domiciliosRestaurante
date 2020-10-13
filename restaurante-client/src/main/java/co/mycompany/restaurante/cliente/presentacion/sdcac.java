@@ -2,6 +2,7 @@ package co.mycompany.restaurante.cliente.presentacion;
 
 
 
+import co.mycompany.restaurante.commons.domain.Plato;
 import java.util.ArrayList;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -33,5 +34,7 @@ public class sdcac {
         String resultado = miControlador.addMenuSemanal(nombres, precios, descripcion);
         if (resultado.contains("error"))System.out.println("error no se por que");
         else System.out.println(resultado);
+        
+        ArrayList<Plato> menuSemanal = miControlador.getMenuSemanal();
     }
 }
