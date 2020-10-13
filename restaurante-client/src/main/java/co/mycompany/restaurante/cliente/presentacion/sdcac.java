@@ -35,6 +35,10 @@ public class sdcac {
         if (resultado.contains("error"))System.out.println("error no se por que");
         else System.out.println(resultado);
         
-        ArrayList<Plato> menuSemanal = miControlador.getMenuSemanal();
+        for (Plato plato : miControlador.getMenuSemanal()){
+            System.out.println(plato.getAtrNombre());
+            System.out.println(plato.getAtrDescripcion());
+            System.out.println(plato.getAtrPrecio());
+        }
     }
 }

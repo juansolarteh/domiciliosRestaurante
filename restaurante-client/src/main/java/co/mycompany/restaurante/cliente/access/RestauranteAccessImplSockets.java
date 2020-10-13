@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import co.mycompany.restaurante.commons.domain.Restaurante;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Servicio de Cliente. Permite hacer el CRUD de clientes solicitando los
@@ -78,7 +80,10 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
                 Logger.getLogger(RestauranteAccessImplSockets.class.getName()).log(Level.INFO, jsonResponse);
                 throw new Exception(extractMessages(jsonResponse));
             } else {
-                //Agregó correctamente el menu, devuelve los nombres de los platos
+                if (jsonResponse.contains("vacio")){
+                    return null;
+                }
+                //Extrajo correctamente los platos para devolver un arrayList de estos
                 return jsonToArray(jsonResponse);
             }
         }
@@ -166,15 +171,23 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
 
     }
     
-    private Plato jsonToMenu(String jsonMenu){
+    private Plato jsonToPlato(String jsonPlato){
+        
         Gson gson = new Gson();
-        Plato plato = gson.fromJson(jsonMenu, Plato.class);
+        Plato plato = gson.fromJson(jsonPlato, Plato.class);
         return plato;
     }
     
-    private ArrayList jsonToArray(String jsonArray){
-        Gson gson = new Gson();
-        ArrayList array = gson.fromJson(jsonArray, ArrayList.class);
-        return array;
+    private ArrayList jsonToArray(String jsonMenu){
+        ArrayList<Plato> menu = new ArrayList<Plato>();
+        String jsonAux = jsonMenu.replace("[", "");
+        jsonAux = jsonAux.replace("]", "");
+        List<String> jsonPlatos = Arrays.asList(jsonAux.split("},"));
+        for (String jsonPlato : jsonPlatos){
+            if (jsonPlato.contains("}") == false)
+                jsonPlato += "}";
+            menu.add(jsonToPlato(jsonPlato));
+        }
+        return menu;
     }
 }

@@ -163,7 +163,6 @@ public class RestauranteServerSocket implements Runnable {
                 if (protocolRequest.getAction().equals("set")) {
                     // Agregar un restaurante    
                     processSetMenuSemanal(protocolRequest);
-
                 }
                 else if (protocolRequest.getAction().equals("get")) {
                     processGetMenuSemanal(protocolRequest);
@@ -266,6 +265,12 @@ public class RestauranteServerSocket implements Runnable {
     private String objectToJSON(ArrayList<Plato> menu) {
         Gson gson = new Gson();
         String strObject = gson.toJson(menu);
+        return strObject;
+    }
+    
+    private String objectToJSON(Restaurante restaurante) {
+        Gson gson = new Gson();
+        String strObject = gson.toJson(restaurante);
         return strObject;
     }
 
