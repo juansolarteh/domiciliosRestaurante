@@ -1,11 +1,3 @@
-
-drop table if exists ADMINISTRADOR;
-
-drop table if exists PLATOS;
-
-drop table if exists RESTAURANTE;
-
-
 -- phpMyAdmin SQL Dump
 -- version 4.6.6deb4+deb9u1
 -- https://www.phpmyadmin.net/
@@ -24,6 +16,9 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Base de datos: `domicilios`
+--
 
 /*==============================================================*/
 /* Table: ADMINISTRADOR                                         */
@@ -32,7 +27,7 @@ create table ADMINISTRADOR
 (
    ADMID                int not null,
    primary key (ADMID)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*==============================================================*/
 /* Table: PLATOS                                                */
@@ -43,7 +38,7 @@ create table PLATOS
    PLTNOMBRE            varchar(30) not null,
    PTLPRECIO            int not null,
    PLTDESCRIPCION       text
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*==============================================================*/
 /* Table: RESTAURANTE                                           */
@@ -56,7 +51,7 @@ create table RESTAURANTE
    RESTDIRECCION        varchar(30) not null,
    RESTTELEFONO         int not null,
    primary key (RESTID)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 alter table PLATOS add constraint FK_TIENE foreign key (RESTID)
       references RESTAURANTE (RESTID) on delete restrict on update restrict;
