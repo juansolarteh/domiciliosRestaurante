@@ -129,6 +129,8 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
         protocol.setResource("restaurante");
         protocol.setAction("set");
         for (int i = 0; i < menuSemanal.size(); i++) {
+            protocol.addParameter("Id Restaurante " + Integer.toString(i) 
+                    , Integer.toString(menuSemanal.get(i).getAtrIdRestaurante()));
             protocol.addParameter("Precio Plato " + Integer.toString(i)
                     , Integer.toString(menuSemanal.get(i).getAtrPrecio()));
             protocol.addParameter("Descripcion Plato " + Integer.toString(i)

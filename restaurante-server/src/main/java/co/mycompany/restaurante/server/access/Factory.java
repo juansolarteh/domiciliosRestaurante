@@ -37,13 +37,17 @@ public class Factory {
     public IRestauranteRepository getRepository() {
         String type = Utilities.loadProperty("restaurante.repository");
         if (type.isEmpty()) {
-            type = "default";
+            //type = "default";
+            type = "mysql";
         }
         IRestauranteRepository result = null;
 
         switch (type) {
             case "default":
                 result = new RestauranteRepositoryImplArrays();
+                break;
+            case "mysql":
+                result = new RestauranteRepositoryImplMysql();
                 break;
         }
         return result;

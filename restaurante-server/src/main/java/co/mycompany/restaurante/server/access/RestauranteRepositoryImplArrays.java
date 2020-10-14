@@ -30,8 +30,8 @@ public final class RestauranteRepositoryImplArrays implements IRestauranteReposi
     public void inicializar() {
         ArrayList <Plato> listaPlatos = new ArrayList<Plato>(); 
         Restaurante regRestaurante = new Restaurante(10,"Cra 12 a ","HOLA");
-        listaPlatos.add(new Plato(10000,"300 g de nada","Nada"));
-        listaPlatos.add(new Plato(11000,"222 g de nada","Nada2"));
+        listaPlatos.add(new Plato(1,10000,"300 g de nada","Nada"));
+        listaPlatos.add(new Plato(1,11000,"222 g de nada","Nada2"));
         regRestaurante.setAtrMenuEspecial(listaPlatos);
         restaurante.add(regRestaurante);
     }

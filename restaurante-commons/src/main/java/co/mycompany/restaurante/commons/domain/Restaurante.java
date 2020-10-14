@@ -10,13 +10,13 @@ import java.util.ArrayList;
 public class Restaurante {
 
     private String atrNombre;
-    private int atrNit;
+    private int atrId;
     private String atrDirecccion;
     private ArrayList<Plato> atrMenuSemanal;
     private ArrayList<Plato> atrMenuEspecial;
   
-    public Restaurante(int prmNit, String prmDireccion, String prmNombre) {
-        this.atrNit = prmNit;
+    public Restaurante(int prmId, String prmDireccion, String prmNombre) {
+        this.atrId = prmId;
         this.atrDirecccion = prmDireccion;
         this.atrNombre = prmNombre;
         this.atrMenuSemanal= new ArrayList<Plato>();
@@ -44,12 +44,12 @@ public class Restaurante {
         this.atrNombre = atrNombre;
     }
 
-    public int getAtrNit() {
-        return atrNit;
+    public int getAtrId() {
+        return atrId;
     }
 
-    public void setAtrNit(int atrNit) {
-        this.atrNit = atrNit;
+    public void setAtrNit(int atrId) {
+        this.atrId = atrId;
     }
 
     public String getAtrDirecccion() {
