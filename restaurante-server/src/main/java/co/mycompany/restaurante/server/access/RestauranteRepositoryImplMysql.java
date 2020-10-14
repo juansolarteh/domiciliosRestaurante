@@ -35,7 +35,7 @@ public class RestauranteRepositoryImplMysql implements IRestauranteRepository {
     public String addMenuSemanal(ArrayList<Plato> menuSemanal) {
         try {
             this.connect();
-            String sql = "INSERT INTO PLATOS(restid, ptlNombre, ptlPrecio, ptlDescripcion) VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO PLATOS(restid, pltNombre, pltPrecio, pltDescripcion) VALUES (?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             int cont;
             for (int i=0;i<menuSemanal.size();i++){

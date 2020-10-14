@@ -36,7 +36,7 @@ create table PLATOS
 (
    RESTID               int not null,
    PLTNOMBRE            varchar(30) not null,
-   PTLPRECIO            int not null,
+   PLTPRECIO            int not null,
    PLTDESCRIPCION       text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
