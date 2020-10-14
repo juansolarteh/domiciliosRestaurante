@@ -10,11 +10,13 @@ package co.mycompany.restaurante.commons.domain;
  * @author juan-
  */
 public class Plato {
+    private int atrIdRestaurante;
     private int atrPrecio;
     private String atrDescripcion;
     private String atrNombre;
     
-    public Plato(int prmPrecio,String prmDescripcion,String prmNombre) {
+    public Plato(int idRestaurante,int prmPrecio,String prmDescripcion,String prmNombre) {
+        this.atrIdRestaurante=idRestaurante;
         this.atrNombre=prmNombre;
         this.atrDescripcion=prmDescripcion;
         this.atrPrecio=prmPrecio;
@@ -46,6 +48,12 @@ public class Plato {
         this.atrNombre = atrNombre;
     }
     
+    public int getAtrIdRestaurante(){
+        return atrIdRestaurante;
+    }
+    public void setAtrIdRestaurante(int atrIdRestaurante) {
+        this.atrIdRestaurante = atrIdRestaurante;
+    }
     
     
 }

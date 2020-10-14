@@ -28,11 +28,11 @@ public class ControladorCliente {
         return instance;
     }
     
-    public String addMenuSemanal(ArrayList<String> nombrePlato, ArrayList<Integer> precioPlato, ArrayList<String> descripcionPlato) throws Exception{
+    public String addMenuSemanal(ArrayList<Integer> idRestaurante,ArrayList<String> nombrePlato, ArrayList<Integer> precioPlato, ArrayList<String> descripcionPlato) throws Exception{
         ArrayList<Plato> menu = new ArrayList<Plato>();
         int posicion = 0;
         for (String nombre : nombrePlato){
-            Plato plato = new Plato(precioPlato.get(posicion),descripcionPlato.get(posicion),nombre);
+            Plato plato = new Plato(idRestaurante.get(posicion),precioPlato.get(posicion),descripcionPlato.get(posicion),nombre);
             posicion++;
             menu.add(plato);
         }
