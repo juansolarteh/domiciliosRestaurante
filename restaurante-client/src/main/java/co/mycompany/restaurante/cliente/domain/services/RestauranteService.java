@@ -38,4 +38,8 @@ public class RestauranteService {
     public ArrayList<Plato> getMenu(String tipoMenu) throws Exception{
         return service.getMenu(tipoMenu);
     }
+    
+    public ArrayList<Restaurante> getRestaurantes()throws Exception{
+        return service.getRestaurantes();
+    }
 }
