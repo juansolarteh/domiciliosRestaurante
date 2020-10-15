@@ -17,4 +17,6 @@ public interface IRestauranteRepository {
     public String addMenuSemanal(ArrayList<Plato> menuSemanal);
     
     public ArrayList<Plato> getMenuSemanal();
+    
+    public ArrayList<Restaurante> getRestaurantes();
 }

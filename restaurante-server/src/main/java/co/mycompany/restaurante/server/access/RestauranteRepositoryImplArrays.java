@@ -34,6 +34,12 @@ public final class RestauranteRepositoryImplArrays implements IRestauranteReposi
         listaPlatos.add(new Plato(11000,"222 g de nada","Nada2"));
         regRestaurante.setAtrMenuEspecial(listaPlatos);
         restaurante.add(regRestaurante);
+        
+        Restaurante regRestaurante2 = new Restaurante(9,"Cra 9 a ","CHAO");
+        listaPlatos.add(new Plato(10000,"400 g de todo","todo"));
+        listaPlatos.add(new Plato(11000,"222 g de todo","todo2"));
+        regRestaurante2.setAtrMenuEspecial(listaPlatos);
+        restaurante.add(regRestaurante2);
     }
 
     @Override
@@ -50,4 +56,13 @@ public final class RestauranteRepositoryImplArrays implements IRestauranteReposi
     public ArrayList<Plato> getMenuSemanal() {
         return restaurante.get(0).getAtrMenuSemanal();
     }
+    
+    public ArrayList<Restaurante> getRestaurantes() {
+        ArrayList<Restaurante> Restaurantes = new ArrayList<Restaurante>();
+        for (int i = 0; i < restaurante.size(); i++){
+            Restaurantes.add(restaurante.get(i));
+        }
+        return Restaurantes;
+    }
+    
 }

@@ -44,4 +44,7 @@ public class RestauranteService {
         return repo.getMenuSemanal();
     }
 
+    public ArrayList<Restaurante> getRestaurantes(){
+        return repo.getRestaurantes();
+    }
 }

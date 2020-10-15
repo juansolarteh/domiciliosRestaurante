@@ -113,4 +113,9 @@ public class RestauranteRepositoryImplMysql implements IRestauranteRepository {
             Logger.getLogger(RestauranteRepositoryImplMysql.class.getName()).log(Level.FINER, "Error al cerrar Connection", ex);
         }
     }
+
+    @Override
+    public ArrayList<Restaurante> getRestaurantes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
