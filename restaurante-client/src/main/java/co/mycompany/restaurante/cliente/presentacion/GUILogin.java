@@ -43,6 +43,8 @@ public class GUILogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         pnlCentro = new javax.swing.JPanel();
         btnAceptar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        pnlSur = new javax.swing.JPanel();
         btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,13 +67,20 @@ public class GUILogin extends javax.swing.JFrame {
         });
         pnlCentro.add(btnAceptar);
 
-        btnCerrar.setText("Administrador");
+        jButton1.setText("Administrador");
+        pnlCentro.add(jButton1);
+
+        pnlSur.setBorder(new javax.swing.border.MatteBorder(null));
+
+        btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
             }
         });
-        pnlCentro.add(btnCerrar);
+        pnlSur.add(btnCerrar);
+
+        pnlCentro.add(pnlSur);
 
         getContentPane().add(pnlCentro, java.awt.BorderLayout.CENTER);
 
@@ -145,7 +154,9 @@ public class GUILogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel pnlCentro;
+    private javax.swing.JPanel pnlSur;
     // End of variables declaration//GEN-END:variables
 }
