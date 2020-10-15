@@ -3,6 +3,7 @@ package co.mycompany.restaurante.cliente.presentacion;
 
 
 import co.mycompany.restaurante.commons.domain.Plato;
+import co.mycompany.restaurante.commons.domain.Restaurante;
 import java.util.ArrayList;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,6 +21,7 @@ public class sdcac {
     
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
+        ArrayList Restaurantes = new ArrayList();
         ArrayList nombres = new ArrayList();
         ArrayList precios = new ArrayList();
         ArrayList descripcion = new ArrayList();
@@ -39,6 +41,10 @@ public class sdcac {
             System.out.println(plato.getAtrNombre());
             System.out.println(plato.getAtrDescripcion());
             System.out.println(plato.getAtrPrecio());
+        }
+        
+        for(Restaurante restaurante : miControlador.getRestaurantes()){
+            System.out.println(restaurante.getAtrNombre());
         }
     }
 }

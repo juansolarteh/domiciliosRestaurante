@@ -43,5 +43,9 @@ public class RestauranteService {
     public ArrayList<Plato> getMenuSemanal(){
         return repo.getMenuSemanal();
     }
+    
+    public ArrayList<Restaurante> getRestaurantes(){
+        return repo.getRestaurantes();
+    }
 
 }

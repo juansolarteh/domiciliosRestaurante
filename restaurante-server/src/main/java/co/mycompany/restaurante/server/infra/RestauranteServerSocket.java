@@ -168,6 +168,10 @@ public class RestauranteServerSocket implements Runnable {
                     processGetMenuSemanal(protocolRequest);
                 }
                 break;
+            case "restaurantes":
+                if (protocolRequest.getAction().equals("get")) {
+                    processGetRestaurantes(protocolRequest);
+                }
         }
 
     }
@@ -203,6 +207,15 @@ public class RestauranteServerSocket implements Runnable {
             output.println("menu semanal vacio");
         } else {
             output.println(objectToJSON(menuSemanal));
+        }
+    }
+    
+    private void processGetRestaurantes(Protocol protocolRequest) {  
+        ArrayList<Restaurante> Restaurantes = service.getRestaurantes();
+        if (Restaurantes.size() == 0) {
+            output.println("menu semanal vacio");
+        } else {
+            output.println(objectRestToJSON(Restaurantes));
         }
     }
 
@@ -268,9 +281,9 @@ public class RestauranteServerSocket implements Runnable {
         return strObject;
     }
     
-    private String objectToJSON(Restaurante restaurante) {
+    private String objectRestToJSON(ArrayList<Restaurante> restaurantes) {
         Gson gson = new Gson();
-        String strObject = gson.toJson(restaurante);
+        String strObject = gson.toJson(restaurantes);
         return strObject;
     }
 

@@ -9,6 +9,7 @@ import co.mycompany.restaurante.cliente.access.Factory;
 import co.mycompany.restaurante.cliente.access.IRestauranteAccess;
 import co.mycompany.restaurante.cliente.domain.services.RestauranteService;
 import co.mycompany.restaurante.commons.domain.Plato;
+import co.mycompany.restaurante.commons.domain.Restaurante;
 import java.util.ArrayList;
 
 /**
@@ -41,5 +42,9 @@ public class ControladorCliente {
     
     public ArrayList<Plato> getMenuSemanal() throws Exception{       
         return restauranteService.getMenu("menuSemanal");
+    }
+    
+    public ArrayList<Restaurante> getRestaurantes() throws Exception{       
+        return restauranteService.getRestaurantes();
     }
 }

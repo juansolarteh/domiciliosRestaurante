@@ -163,10 +163,8 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
      * @param jsonRestaurante objeto cliente en formato json
      */
     private Restaurante jsonToRestaurante(String jsonRestaurante) {
-
         Gson gson = new Gson();
         Restaurante restaurante = gson.fromJson(jsonRestaurante, Restaurante.class);
-
         return restaurante;
 
     }
@@ -189,5 +187,91 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
             menu.add(jsonToPlato(jsonPlato));
         }
         return menu;
+    }
+    
+    
+    private ArrayList jsonToArray(String jsonArray, String tipoDato){
+        ArrayList listaDatos = new ArrayList();
+        String jsonAux = jsonArray.replace("[", "");
+        jsonAux = jsonAux.replace("]", "");
+        List<String> jsonDatos = Arrays.asList(jsonAux.split("},"));
+        for (String jsonDato : jsonDatos){
+            if (jsonDato.contains("}") == false)
+                jsonDato += "}";
+            switch (tipoDato){
+                case "Plato":
+                    listaDatos.add(jsonToPlato(jsonDato));
+                case "Restaurante":
+                    listaDatos.add(jsonToRestaurante(jsonDato));
+            }
+        }
+        return listaDatos;
+    }
+    
+    private String getMenuRequestJson() {
+
+        Protocol protocol = new Protocol();
+        protocol.setResource("restaurante");
+        protocol.setAction("get");
+
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(protocol);
+
+        return requestJson;
+    }
+    
+    @Override
+    public ArrayList<Restaurante> getRestaurantes()throws Exception {
+        String jsonResponse = null;
+        String requestJson = getRestauranteRequestJson();
+        try {
+            mySocket.connect();
+            jsonResponse = mySocket.sendStream(requestJson);
+            mySocket.closeStream();
+            mySocket.disconnect();
+
+        } catch (IOException ex) {
+            Logger.getLogger(RestauranteAccessImplSockets.class.getName()).log(Level.SEVERE, "No hubo conexión con el servidor", ex);
+        }
+        if (jsonResponse == null) {
+            throw new Exception("No se pudo conectar con el servidor");
+        } else {
+            if (jsonResponse.contains("error")) {
+                //Devolvió algún error                
+                Logger.getLogger(RestauranteAccessImplSockets.class.getName()).log(Level.INFO, jsonResponse);
+                throw new Exception(extractMessages(jsonResponse));
+            } else {
+                if (jsonResponse.contains("vacio")){
+                    return null;
+                }
+                //Extrajo correctamente los platos para devolver un arrayList de estos
+                return jsonResToArray(jsonResponse);
+            }
+        }
+    }
+    
+    private ArrayList<Restaurante> jsonResToArray(String jsonRestaurante){
+        ArrayList<Restaurante> restaurantes = new ArrayList<Restaurante>();
+        String jsonAux = jsonRestaurante.replace("[", "");
+        jsonAux = jsonAux.replace("]", "");
+        List<String> jsonRestaurantes = Arrays.asList(jsonAux.split("},"));
+        for (String jsonRes : jsonRestaurantes){
+            if (jsonRes.contains("}") == false)
+                jsonRes += "}";
+            restaurantes.add(jsonToRestaurante(jsonRes));
+        }
+        return restaurantes;
+    }
+    
+    private String getRestauranteRequestJson() {
+
+        Protocol protocol = new Protocol();
+        protocol.setResource("restaurantes");
+        protocol.setAction("get");
+
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(protocol);
+
+        return requestJson;
     }
 }
