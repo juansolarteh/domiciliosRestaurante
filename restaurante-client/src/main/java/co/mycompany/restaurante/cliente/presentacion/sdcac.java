@@ -36,6 +36,9 @@ public class sdcac {
         else System.out.println(resultado);
         
         for (Plato plato : miControlador.getMenuSemanal()){
+            System.out.println(plato.getAtrNombre());
+            System.out.println(plato.getAtrDescripcion());
             System.out.println(plato.getAtrPrecio());
+        }
     }
 }
