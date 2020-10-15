@@ -40,7 +40,7 @@ public class RestauranteRepositoryImplMysql implements IRestauranteRepository {
             int cont;
             for (int i=0;i<menuSemanal.size();i++){
                 cont = 1;
-                pstmt.setInt(cont, menuSemanal.get(i).getAtrIdRestaurante());
+                pstmt.setInt(cont, 1);
                 cont++;
                 pstmt.setString(cont, menuSemanal.get(i).getAtrNombre());
                 cont++;
@@ -60,32 +60,25 @@ public class RestauranteRepositoryImplMysql implements IRestauranteRepository {
     @Override
     public ArrayList<Plato> getMenuSemanal() {
         ArrayList<Plato> menu = new ArrayList();
+        try{
+            this.connect();
+            String sql = "SELECT * from Platos where restid=? ";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, Integer.toString(1));
+            ResultSet res = pstmt.executeQuery();
+            while(res.next()) {      
+                Plato plato = new Plato();
+                plato.setAtrNombre(res.getString("pltNombre"));
+                plato.setAtrDescripcion(res.getString("pltDescripcion"));
+                plato.setAtrPrecio(Integer.parseInt(res.getString("pltPrecio")));
+                menu.add(plato);
+            }
+            pstmt.close();
+            this.disconnect();
+        } catch (SQLException ex) {
+            Logger.getLogger(RestauranteRepositoryImplMysql.class.getName()).log(Level.SEVERE, "Error al consultar Customer de la base de datos", ex);
+        }
         return menu;
-//        this.connect();
-//        try {
-//            String sql = "SELECT * from Platos where restid=? ";
-//            PreparedStatement pstmt = conn.prepareStatement(sql);
-//            pstmt.setString(1, idRestaurante);
-//            ResultSet res = pstmt.executeQuery();
-//            if (res.next()) {
-//                customer = new Customer();
-//                ArrayList<Plato> menu = new ArrayList();
-//                customer.setId(res.getString(""));
-//                customer.setFirstName(res.getString("first_name"));
-//                customer.setLastName(res.getString("last_name"));
-//                customer.setAddress(res.getString("address"));
-//                customer.setMobile(res.getString("mobile"));
-//                customer.setGender(res.getString("gender"));
-//                customer.setEmail(res.getString("email"));
-//
-//            }
-//            pstmt.close();
-//            this.disconnect();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(RestauranteRepositoryImplMysql.class.getName()).log(Level.SEVERE, "Error al consultar Customer de la base de datos", ex);
-//        }
-//        return customer;
-//    }
     }
     
     /**

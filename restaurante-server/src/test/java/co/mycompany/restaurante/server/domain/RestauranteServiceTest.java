@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class RestauranteServiceTest {
 
     Plato regPlato1 = new Plato();
-    Plato regPlato2 = new Plato(1,10000,"Descripcion","Nombre");
+    Plato regPlato2 = new Plato(10000,"Descripcion","Nombre");
     
 //    @Test
 //    public void testgetMenuSmanalVacio() {  

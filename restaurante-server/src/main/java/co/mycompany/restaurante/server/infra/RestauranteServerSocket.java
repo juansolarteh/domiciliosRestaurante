@@ -181,8 +181,6 @@ public class RestauranteServerSocket implements Runnable {
         ArrayList <Plato> menuSemanal= new ArrayList<Plato>();
         for (int i = 0; i < protocolRequest.getParameters().size(); i++){
             Plato regPlato = new Plato();
-            regPlato.setAtrIdRestaurante(Integer.parseInt(protocolRequest.getParameters().get(i).getValue()));
-            i++;
             regPlato.setAtrPrecio(Integer.parseInt(protocolRequest.getParameters().get(i).getValue()));
             i++;
             regPlato.setAtrDescripcion(protocolRequest.getParameters().get(i).getValue());
