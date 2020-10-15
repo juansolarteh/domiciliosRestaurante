@@ -12,15 +12,17 @@ public class Restaurante {
     private String atrNombre;
     private int atrId;
     private String atrDirecccion;
+    private int atrTelefono;
     private ArrayList<Plato> atrMenuSemanal;
     private ArrayList<Plato> atrMenuEspecial;
   
-    public Restaurante(int prmId, String prmDireccion, String prmNombre) {
+    public Restaurante(int prmId, String prmDireccion, String prmNombre, int prmTelefono) {
         this.atrId = prmId;
         this.atrDirecccion = prmDireccion;
         this.atrNombre = prmNombre;
         this.atrMenuSemanal= new ArrayList<Plato>();
         this.atrMenuEspecial= new ArrayList<Plato>();
+        this.atrTelefono = prmTelefono;
     }
 
     public ArrayList<Plato> getAtrMenuEspecial() {
@@ -30,7 +32,6 @@ public class Restaurante {
     public void setAtrMenuEspecial(ArrayList<Plato> atrMenuEspecial) {
         this.atrMenuEspecial = atrMenuEspecial;
     }
-    
     
     public Restaurante() {
 
@@ -56,10 +57,18 @@ public class Restaurante {
         return atrDirecccion;
     }
 
+    public int getAtrTelefono() {
+        return atrTelefono;
+    }
+    
     public void setAtrDirecccion(String atrDirecccion) {
         this.atrDirecccion = atrDirecccion;
     }
 
+    public void setAtrTelefono(int prmTelefono) {
+        this.atrTelefono = prmTelefono;
+    }
+    
     public ArrayList<Plato> getAtrMenuSemanal() {
         return atrMenuSemanal;
     }

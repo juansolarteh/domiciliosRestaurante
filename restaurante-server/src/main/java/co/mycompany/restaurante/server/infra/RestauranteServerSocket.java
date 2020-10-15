@@ -170,6 +170,7 @@ public class RestauranteServerSocket implements Runnable {
                 break;
             case "restaurantes":
                 if (protocolRequest.getAction().equals("get")) {
+                    // Obtener datos de restaurante
                     processGetRestaurantes(protocolRequest);
                 }
         }
@@ -213,7 +214,7 @@ public class RestauranteServerSocket implements Runnable {
     private void processGetRestaurantes(Protocol protocolRequest) {  
         ArrayList<Restaurante> Restaurantes = service.getRestaurantes();
         if (Restaurantes.size() == 0) {
-            output.println("menu semanal vacio");
+            output.println("Restaurantes vacio");
         } else {
             output.println(objectRestToJSON(Restaurantes));
         }

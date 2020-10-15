@@ -116,6 +116,25 @@ public class RestauranteRepositoryImplMysql implements IRestauranteRepository {
 
     @Override
     public ArrayList<Restaurante> getRestaurantes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Restaurante> Restaurantes = new ArrayList();
+        try{
+            this.connect();
+            String sql = "SELECT * from restaurante";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet res = pstmt.executeQuery();
+            while(res.next()) {      
+                Restaurante RegistroRes = new Restaurante();
+                RegistroRes.setAtrNit(Integer.parseInt(res.getString("restId")));
+                RegistroRes.setAtrNombre(res.getString("restNombre"));
+                RegistroRes.setAtrDirecccion(res.getString("restDireccion"));
+                RegistroRes.setAtrTelefono(Integer.parseInt(res.getString("restTelefono")));
+                Restaurantes.add(RegistroRes);
+            }
+            pstmt.close();
+            this.disconnect();
+        } catch (SQLException ex) {
+            Logger.getLogger(RestauranteRepositoryImplMysql.class.getName()).log(Level.SEVERE, "Error al consultar Customer de la base de datos", ex);
+        }
+        return Restaurantes;
     }
 }

@@ -47,4 +47,5 @@ public class RestauranteService {
     public ArrayList<Restaurante> getRestaurantes(){
         return repo.getRestaurantes();
     }
+    
 }

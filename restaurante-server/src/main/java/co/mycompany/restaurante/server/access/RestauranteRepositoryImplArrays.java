@@ -29,13 +29,13 @@ public final class RestauranteRepositoryImplArrays implements IRestauranteReposi
 
     public void inicializar() {
         ArrayList <Plato> listaPlatos = new ArrayList<Plato>(); 
-        Restaurante regRestaurante = new Restaurante(10,"Cra 12 a ","HOLA");
+        Restaurante regRestaurante = new Restaurante(10,"Cra 12 a ","HOLA",100);
         listaPlatos.add(new Plato(10000,"300 g de nada","Nada"));
         listaPlatos.add(new Plato(11000,"222 g de nada","Nada2"));
         regRestaurante.setAtrMenuEspecial(listaPlatos);
         restaurante.add(regRestaurante);
         
-        Restaurante regRestaurante2 = new Restaurante(9,"Cra 9 a ","CHAO");
+        Restaurante regRestaurante2 = new Restaurante(9,"Cra 9 a ","CHAO",120);
         listaPlatos.add(new Plato(10000,"400 g de todo","todo"));
         listaPlatos.add(new Plato(11000,"222 g de todo","todo2"));
         regRestaurante2.setAtrMenuEspecial(listaPlatos);

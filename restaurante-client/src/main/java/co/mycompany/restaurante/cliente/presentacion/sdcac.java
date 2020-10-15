@@ -43,7 +43,10 @@ public class sdcac {
         }
         
         for(Restaurante restaurante : miControlador.getRestaurantes()){
+            System.out.println("---------------------------------------");
             System.out.println(restaurante.getAtrNombre());
+            System.out.println(restaurante.getAtrDirecccion());
+            System.out.println(restaurante.getAtrTelefono());
         }
     }
 }

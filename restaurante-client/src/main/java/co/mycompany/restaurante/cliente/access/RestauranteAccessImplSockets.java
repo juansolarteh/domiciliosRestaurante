@@ -166,7 +166,6 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
 
         Gson gson = new Gson();
         Restaurante restaurante = gson.fromJson(jsonRestaurante, Restaurante.class);
-
         return restaurante;
 
     }
@@ -223,14 +222,11 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
     }
     
     private String getRestauranteRequestJson() {
-
         Protocol protocol = new Protocol();
         protocol.setResource("restaurantes");
         protocol.setAction("get");
-
         Gson gson = new Gson();
         String requestJson = gson.toJson(protocol);
-
         return requestJson;
     }
     
