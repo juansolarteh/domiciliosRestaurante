@@ -23,14 +23,26 @@ public class GUIMenu extends javax.swing.JFrame {
     /**
      * Creates new form GUIMenu
      */
-    ControladorAdministrador mic = ControladorAdministrador.getInstance();
+    ControladorAdministrador atrControlador = ControladorAdministrador.getInstance();
+
     public GUIMenu() throws Exception {
         initComponents();
         //Poner el icono de la aplicación
         Image icon = Toolkit.getDefaultToolkit().getImage("./src/recursos/logo.png");
         this.setIconImage(icon);
-        ArrayList lista = mic.getMenuSemanal();
-        int a = 1;
+        ArrayList<Plato> menuSemanal = atrControlador.getMenuSemanal();
+        String[] stringsPlatos = new String[menuSemanal.size()];
+        int pos = 0;
+        for (Plato plato:menuSemanal){
+            stringsPlatos[pos] = plato.toString();
+            pos++;
+        }
+        
+        jListPlatos.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = stringsPlatos;
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,6 +54,8 @@ public class GUIMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         dskEscritorio = new javax.swing.JDesktopPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListPlatos = new javax.swing.JList<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuPaqueteTodoIncluido = new javax.swing.JMenu();
         mnuGestionPlatos = new javax.swing.JMenuItem();
@@ -51,6 +65,8 @@ public class GUIMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agencia de viajes");
+
+        jScrollPane1.setViewportView(jListPlatos);
 
         mnuPaqueteTodoIncluido.setText("Gestion Restaurante");
 
@@ -86,13 +102,19 @@ public class GUIMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(1750, 1750, 1750)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1734, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dskEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(dskEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
 
         pack();
@@ -160,7 +182,9 @@ public class GUIMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dskEscritorio;
+    private javax.swing.JList<String> jListPlatos;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenu mnuEmpleadoLogueado;
     private javax.swing.JMenuItem mnuGestionPlatos;

@@ -46,4 +46,8 @@ public class Plato {
         this.atrNombre = atrNombre;
     }
     
+    public String toString(){
+        return atrNombre +" " + atrDescripcion+" $" + Integer.toString(atrPrecio);
+    }
+    
 }
