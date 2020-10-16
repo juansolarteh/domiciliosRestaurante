@@ -74,7 +74,6 @@ public class GUIPagPrincipalCliente extends JPanel {
         }
 
         marco.pack();
-        marco.setLocationRelativeTo(null);
         marco.setVisible(true);
     }
     

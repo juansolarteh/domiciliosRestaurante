@@ -21,12 +21,17 @@ public class GUIListaPlatosCliente extends javax.swing.JFrame {
 
     private ControladorAdministrador atrControlador = ControladorAdministrador.getInstance();
     ArrayList<Plato> menuSemanal;
-    static String strIdrest;
+    static String strIdrest = "";
     
     private static GUIListaPlatosCliente instance;
     public static GUIListaPlatosCliente getInstance(String prmStrIdRest) throws Exception {
-        strIdrest = prmStrIdRest;
+        
         if (instance == null) {
+            strIdrest = prmStrIdRest;
+            instance = new GUIListaPlatosCliente();
+        }else if (instance != null && strIdrest != prmStrIdRest){
+            instance.dispose();
+            strIdrest = prmStrIdRest;
             instance = new GUIListaPlatosCliente();
         } 
         return instance;
@@ -145,7 +150,7 @@ public class GUIListaPlatosCliente extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new GUIListaPlatosCliente().setVisible(true);
+                    GUIListaPlatosCliente.getInstance("").setVisible(true);
                 } catch (Exception ex) {
                     Logger.getLogger(GUIListaPlatosCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
