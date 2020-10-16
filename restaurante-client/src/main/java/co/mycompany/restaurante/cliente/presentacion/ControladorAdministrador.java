@@ -16,20 +16,31 @@ import java.util.ArrayList;
  *
  * @author juan-
  */
-public class ControladorCliente {
+public class ControladorAdministrador {
     
-    private static ControladorCliente instance;
+    private static ControladorAdministrador instance;
     IRestauranteAccess service = Factory.getInstance().getRestauranteService();
     RestauranteService restauranteService = new RestauranteService(service);
     
-    public static ControladorCliente getInstance() {
+    public static ControladorAdministrador getInstance() {
         if (instance == null) {
-            instance = new ControladorCliente();
+            instance = new ControladorAdministrador();
         }
         return instance;
     }
     
-    public ArrayList<Restaurante> getRestaurantes() throws Exception{       
-        return restauranteService.getRestaurantes();
+    public String addMenuSemanal(ArrayList<String> nombrePlato, ArrayList<Integer> precioPlato, ArrayList<String> descripcionPlato) throws Exception{
+        ArrayList<Plato> menu = new ArrayList<Plato>();
+        int posicion = 0;
+        for (String nombre : nombrePlato){
+            Plato plato = new Plato(precioPlato.get(posicion),descripcionPlato.get(posicion),nombre);
+            posicion++;
+            menu.add(plato);
+        }
+        return restauranteService.addMenuSemana(menu); 
+    }
+    
+    public ArrayList<Plato> getMenuSemanal() throws Exception{       
+        return restauranteService.getMenu("menuSemanal");
     }
 }
