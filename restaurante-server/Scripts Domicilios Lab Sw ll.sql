@@ -64,4 +64,12 @@ alter table RESTAURANTE add constraint FK_ADMINISTRA foreign key (ADMID)
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 INSERT INTO ADMINISTRADOR VALUES(100);
-INSERT INTO RESTAURANTE VALUES(1,100,"LA COSECHA","JUNTO A BOMBEROS",800002);
+INSERT INTO RESTAURANTE VALUES(1,100,"LA COSECHA","Cra 11 # 3-45",800001);
+INSERT INTO RESTAURANTE VALUES(2,100,"PATATUS","Cll 3a # 4-25 n",800002);
+INSERT INTO RESTAURANTE VALUES(3,100,"PIZZA PITS","cra 3s # 3-21",800003);
+INSERT INTO PLATOS values(1,"Carne asada",15000,"300 g de carne asada al carbon");
+INSERT INTO PLATOS values(1,"Pollo asado",12000,"300 g de pollo asado al carbon");
+INSERT INTO PLATOS values(2,"Hamburguesa",11000,"300 g de carne angus, lechuga, tomate y salsa patatus");
+INSERT INTO PLATOS values(3,"pzza maduritos",12,"pizza con platano maduro, queso, jamon");
+
+
