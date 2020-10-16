@@ -46,7 +46,7 @@ public class ControladorAdministrador {
         return restauranteService.addMenuSemana(menu); 
     }
     
-    public ArrayList<Plato> getMenuSemanal() throws Exception{       
-        return restauranteService.getMenu("menuSemanal");
+    public ArrayList<Plato> getMenuSemanal(int idRestaurantes) throws Exception{       
+        return restauranteService.getMenu(idRestaurantes);
     }
 }

@@ -6,9 +6,12 @@
 package co.mycompany.restaurante.cliente.presentacion;
 
 import co.mycompany.restaurante.commons.domain.Plato;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -17,12 +20,15 @@ import java.util.logging.Logger;
 public class GUIListaPlatosCliente extends javax.swing.JFrame {
 
     private ControladorAdministrador atrControlador = ControladorAdministrador.getInstance();
+    ArrayList<Plato> menuSemanal;
+    static String strIdrest;
     
     private static GUIListaPlatosCliente instance;
-    public static GUIListaPlatosCliente getInstance() throws Exception {
+    public static GUIListaPlatosCliente getInstance(String prmStrIdRest) throws Exception {
+        strIdrest = prmStrIdRest;
         if (instance == null) {
             instance = new GUIListaPlatosCliente();
-        }
+        } 
         return instance;
     }
     /**
@@ -31,13 +37,12 @@ public class GUIListaPlatosCliente extends javax.swing.JFrame {
     private GUIListaPlatosCliente() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
+        menuSemanal = atrControlador.getMenuSemanal(Integer.parseInt(strIdrest));
         escribirPlatos();   
         jtxtAreaPlatos.setEditable(false);
-        instance = this;
     }
     
     private void escribirPlatos() throws Exception{
-        ArrayList<Plato> menuSemanal = atrControlador.getMenuSemanal();
         int pos = 0;
         for (Plato plato:menuSemanal){
             jtxtAreaPlatos.append(plato.getAtrNombre() + "\n");

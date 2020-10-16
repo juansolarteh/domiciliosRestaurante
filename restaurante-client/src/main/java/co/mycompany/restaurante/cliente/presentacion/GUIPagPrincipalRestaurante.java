@@ -37,7 +37,7 @@ public class GUIPagPrincipalRestaurante extends javax.swing.JFrame {
     }
     
     private void escribirPlatos() throws Exception{
-        ArrayList<Plato> menuSemanal = atrControlador.getMenuSemanal();
+        ArrayList<Plato> menuSemanal = atrControlador.getMenuSemanal(1);
         int pos = 0;
         for (Plato plato:menuSemanal){
             jtxtAreaPlatos.append(plato.getAtrNombre() + "\n");

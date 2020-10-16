@@ -263,9 +263,10 @@ public class GUIAdicionarPlato extends JFrame {
                         plato.setAtrPrecio(Integer.parseInt(txtPrecio.getText()));
                         try {
                             miControlador.addMenuSemanal(plato);
-                            successMessage("Plato agregado con éxito.", "Atención");
-                            clearControls();
                             GUIPagPrincipalRestaurante ins = GUIPagPrincipalRestaurante.getInstance();
+                            ins.actualizarPlato(plato);
+                            successMessage("Plato agregado con éxito.", "Atención");
+                            clearControls();      
                             txtPrecio.setEnabled(false);
                             txtDescripcion.setEnabled(false);
                             txtPrecio.setEditable(false);

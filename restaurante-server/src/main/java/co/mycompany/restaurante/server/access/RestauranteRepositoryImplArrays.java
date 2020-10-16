@@ -53,7 +53,7 @@ public final class RestauranteRepositoryImplArrays implements IRestauranteReposi
     }
 
     @Override
-    public ArrayList<Plato> getMenuSemanal() {
+    public ArrayList<Plato> getMenuSemanal(int idRestaurantes) {
         return restaurante.get(0).getAtrMenuSemanal();
     }
     
