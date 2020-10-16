@@ -12,9 +12,9 @@ import java.util.logging.Logger;
  *
  * @author Personal
  */
-public class GUIPlato extends javax.swing.JFrame {
+public class GUIPlato extends javax.swing.JInternalFrame {
     
-        static ControladorAdministrador miControlador  = ControladorAdministrador.getInstance();
+    static ControladorAdministrador miControlador  = ControladorAdministrador.getInstance();
     
     /**
      * Creates new form GUIPlato
@@ -253,4 +253,5 @@ public class GUIPlato extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
+
 }
