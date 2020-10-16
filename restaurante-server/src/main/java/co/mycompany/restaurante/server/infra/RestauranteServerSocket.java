@@ -203,7 +203,8 @@ public class RestauranteServerSocket implements Runnable {
      * @param protocolRequest Protocolo de la solicitud
      */
     private void processGetMenuSemanal(Protocol protocolRequest) {  
-        ArrayList<Plato> menuSemanal = service.getMenuSemanal();
+        ArrayList<Plato> menuSemanal = service.getMenuSemanal
+        (Integer.parseInt(protocolRequest.getParameters().get(0).getValue()));
         if (menuSemanal.size() == 0) {
             output.println("menu semanal vacio");
         } else {

@@ -13,7 +13,7 @@ public interface IRestauranteAccess {
 
     public String addMenuSemanal(ArrayList<Plato> menuSemanal)throws Exception;
     
-    public ArrayList<Plato> getMenu(String tipoMenu)throws Exception;
+    public ArrayList<Plato> getMenu(int idRestaurantes)throws Exception;
     
     public ArrayList<Restaurante>getRestaurantes()throws Exception;
 }

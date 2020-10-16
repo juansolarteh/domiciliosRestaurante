@@ -60,9 +60,9 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
     }
     
     @Override
-    public ArrayList<Plato> getMenu(String tipoMenu)throws Exception {
+    public ArrayList<Plato> getMenu(int idRestaurantes)throws Exception {
         String jsonResponse = null;
-        String requestJson = getMenuRequestJson(tipoMenu);
+        String requestJson = getMenuRequestJson(idRestaurantes);
         try {
             mySocket.connect();
             jsonResponse = mySocket.sendStream(requestJson);
@@ -143,12 +143,12 @@ public class RestauranteAccessImplSockets implements IRestauranteAccess {
         return requestJson;
     }
     
-    private String getMenuRequestJson(String tipoMenu) {
+    private String getMenuRequestJson(int idRestaurantes) {
 
         Protocol protocol = new Protocol();
         protocol.setResource("restaurante");
         protocol.setAction("get");
-        protocol.addParameter("menu", tipoMenu);
+        protocol.addParameter("menu restaurante con id", Integer.toString(idRestaurantes));
 
         Gson gson = new Gson();
         String requestJson = gson.toJson(protocol);

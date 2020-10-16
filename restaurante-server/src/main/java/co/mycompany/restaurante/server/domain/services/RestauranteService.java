@@ -40,8 +40,8 @@ public class RestauranteService {
         return repo.addMenuSemanal(menuSemanal);
     }
     
-    public ArrayList<Plato> getMenuSemanal(){
-        return repo.getMenuSemanal();
+    public ArrayList<Plato> getMenuSemanal(int idRestaurantes){
+        return repo.getMenuSemanal(idRestaurantes);
     }
 
     public ArrayList<Restaurante> getRestaurantes(){

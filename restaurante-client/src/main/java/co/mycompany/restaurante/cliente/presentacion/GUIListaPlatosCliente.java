@@ -20,12 +20,15 @@ import javax.swing.JFrame;
 public class GUIListaPlatosCliente extends javax.swing.JFrame {
 
     private ControladorAdministrador atrControlador = ControladorAdministrador.getInstance();
+    ArrayList<Plato> menuSemanal;
+    static String strIdrest;
     
     private static GUIListaPlatosCliente instance;
-    public static GUIListaPlatosCliente getInstance() throws Exception {
+    public static GUIListaPlatosCliente getInstance(String prmStrIdRest) throws Exception {
+        strIdrest = prmStrIdRest;
         if (instance == null) {
             instance = new GUIListaPlatosCliente();
-        }
+        } 
         return instance;
     }
     /**
@@ -34,13 +37,12 @@ public class GUIListaPlatosCliente extends javax.swing.JFrame {
     private GUIListaPlatosCliente() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
+        menuSemanal = atrControlador.getMenuSemanal(Integer.parseInt(strIdrest));
         escribirPlatos();   
         jtxtAreaPlatos.setEditable(false);
-        instance = this;
     }
     
     private void escribirPlatos() throws Exception{
-        ArrayList<Plato> menuSemanal = atrControlador.getMenuSemanal();
         int pos = 0;
         for (Plato plato:menuSemanal){
             jtxtAreaPlatos.append(plato.getAtrNombre() + "\n");

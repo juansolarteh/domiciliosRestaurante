@@ -59,13 +59,13 @@ public class RestauranteRepositoryImplMysql implements IRestauranteRepository {
     }
 
     @Override
-    public ArrayList<Plato> getMenuSemanal() {
+    public ArrayList<Plato> getMenuSemanal(int idRestaurantes) {
         ArrayList<Plato> menu = new ArrayList();
         try{
             this.connect();
             String sql = "SELECT * from Platos where restid=? ";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, Integer.toString(1));
+            pstmt.setString(1, Integer.toString(idRestaurantes));
             ResultSet res = pstmt.executeQuery();
             while(res.next()) {      
                 Plato plato = new Plato();

@@ -32,4 +32,8 @@ public class ControladorCliente {
     public ArrayList<Restaurante> getRestaurantes() throws Exception{       
         return restauranteService.getRestaurantes();
     }
+    
+    public ArrayList<Plato> getMenuSemanal(int idRestaurantes) throws Exception{       
+        return restauranteService.getMenu(idRestaurantes);
+    }
 }

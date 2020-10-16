@@ -70,8 +70,7 @@ public class NewJFrame extends javax.swing.JFrame {
     
     private static void jTextArea1MouseClicked(java.awt.event.MouseEvent evt) throws Exception {                                        
         GUIListaPlatosCliente ins = GUIListaPlatosCliente.getInstance();
-        ins.setVisible(true);
-        //ins.show();
+        ins.show();
     }
     /**
      * This method is called from within the constructor to initialize the form.

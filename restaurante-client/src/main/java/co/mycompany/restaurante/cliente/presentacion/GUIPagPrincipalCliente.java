@@ -54,7 +54,8 @@ public class GUIPagPrincipalCliente extends JPanel {
         marco.setContentPane(panel);
 
         for (Restaurante rest: restaurantes){
-            JTextArea jTextArea1 = crearTextAreaRestaurante(rest);    
+            JTextArea jTextArea1 = crearTextAreaRestaurante(rest);
+            jTextArea1.setName(Integer.toString(rest.getAtrId()));
             jTextArea1.setEditable(false);
             marco.add(jTextArea1);
             marco.add(new javax.swing.JPopupMenu.Separator());
@@ -63,7 +64,7 @@ public class GUIPagPrincipalCliente extends JPanel {
             jTextArea1.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt){
                     try {
-                        jTextArea1MouseClicked(evt, jTextArea1);
+                        jTextArea1MouseClicked(evt, jTextArea1.getName());
                     } catch (Exception ex) {
                         Logger.getLogger(GUIPagPrincipalCliente.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -77,8 +78,8 @@ public class GUIPagPrincipalCliente extends JPanel {
         marco.setVisible(true);
     }
     
-    private static void jTextArea1MouseClicked(java.awt.event.MouseEvent evt, JTextArea jta) throws Exception {                                        
-        GUIListaPlatosCliente instance = GUIListaPlatosCliente.getInstance();
+    private static void jTextArea1MouseClicked(java.awt.event.MouseEvent evt, String strIdRest) throws Exception {                                        
+        GUIListaPlatosCliente instance = GUIListaPlatosCliente.getInstance(strIdRest);
         instance.show();
     }         
 
