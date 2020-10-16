@@ -29,16 +29,22 @@ public class ControladorAdministrador {
         return instance;
     }
     
-    public String addMenuSemanal(ArrayList<String> nombrePlato, ArrayList<Integer> precioPlato, ArrayList<String> descripcionPlato) throws Exception{
-        ArrayList<Plato> menu = new ArrayList<Plato>();
-        int posicion = 0;
-        for (String nombre : nombrePlato){
-            Plato plato = new Plato(precioPlato.get(posicion),descripcionPlato.get(posicion),nombre);
-            posicion++;
-            menu.add(plato);
-        }
-        return restauranteService.addMenuSemana(menu); 
+    public String addMenuSemanal(Plato plato)throws Exception{
+        ArrayList<Plato> MenuSem = new ArrayList<Plato>();
+        MenuSem.add(plato);
+        return restauranteService.addMenuSemana(MenuSem);
     }
+    
+//    public String addMenuSemanal(ArrayList<String> nombrePlato, ArrayList<Integer> precioPlato, ArrayList<String> descripcionPlato) throws Exception{
+//        ArrayList<Plato> menu = new ArrayList<Plato>();
+//        int posicion = 0;
+//        for (String nombre : nombrePlato){
+//            Plato plato = new Plato(precioPlato.get(posicion),descripcionPlato.get(posicion),nombre);
+//            posicion++;
+//            menu.add(plato);
+//        }
+//        return restauranteService.addMenuSemana(menu); 
+//    }
     
     public ArrayList<Plato> getMenuSemanal() throws Exception{       
         return restauranteService.getMenu("menuSemanal");
