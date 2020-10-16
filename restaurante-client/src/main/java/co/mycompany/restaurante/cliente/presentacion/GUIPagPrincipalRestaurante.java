@@ -17,6 +17,8 @@ import java.util.logging.Logger;
 public class GUIPagPrincipalRestaurante extends javax.swing.JFrame {
 
     private ControladorAdministrador atrControlador = ControladorAdministrador.getInstance();
+    ArrayList<Plato> menuSemanal;
+    boolean hayPlatos = false;
     
     private static GUIPagPrincipalRestaurante instance;
     public static GUIPagPrincipalRestaurante getInstance() throws Exception {
@@ -31,13 +33,22 @@ public class GUIPagPrincipalRestaurante extends javax.swing.JFrame {
     GUIPagPrincipalRestaurante() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
-        escribirPlatos();   
+        menuSemanal = atrControlador.getMenuSemanal(1);
+        if (menuSemanal == null){
+            jtxtAreaPlatos.append("NO HAY PLATOS SEMANALES REGISTRADOS"+"\n");
+            jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
+            jtxtAreaPlatos.append("EN ESTE RESTAURANTE");
+            jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
+            hayPlatos = false;
+        }else{         
+            hayPlatos = true;
+            escribirPlatos();       
+        }   
         jtxtAreaPlatos.setEditable(false);
         instance = this;
     }
     
     private void escribirPlatos() throws Exception{
-        ArrayList<Plato> menuSemanal = atrControlador.getMenuSemanal(1);
         int pos = 0;
         for (Plato plato:menuSemanal){
             jtxtAreaPlatos.append(plato.getAtrNombre() + "\n");
@@ -51,6 +62,10 @@ public class GUIPagPrincipalRestaurante extends javax.swing.JFrame {
         }
     }
     public void actualizarPlato(Plato plato){
+        if (hayPlatos == false){
+            hayPlatos = true;
+            jtxtAreaPlatos.setText("");
+        }           
         jtxtAreaPlatos.append(plato.getAtrNombre() + "\n");
         jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
         jtxtAreaPlatos.append(plato.getAtrDescripcion() + "\n");

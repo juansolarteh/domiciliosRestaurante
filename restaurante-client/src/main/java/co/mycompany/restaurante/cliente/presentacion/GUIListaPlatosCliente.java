@@ -21,12 +21,17 @@ public class GUIListaPlatosCliente extends javax.swing.JFrame {
 
     private ControladorAdministrador atrControlador = ControladorAdministrador.getInstance();
     ArrayList<Plato> menuSemanal;
-    static String strIdrest;
+    static String strIdrest = "";
     
     private static GUIListaPlatosCliente instance;
     public static GUIListaPlatosCliente getInstance(String prmStrIdRest) throws Exception {
-        strIdrest = prmStrIdRest;
+        
         if (instance == null) {
+            strIdrest = prmStrIdRest;
+            instance = new GUIListaPlatosCliente();
+        }else if (instance != null && strIdrest != prmStrIdRest){
+            instance.dispose();
+            strIdrest = prmStrIdRest;
             instance = new GUIListaPlatosCliente();
         } 
         return instance;
@@ -38,7 +43,14 @@ public class GUIListaPlatosCliente extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         menuSemanal = atrControlador.getMenuSemanal(Integer.parseInt(strIdrest));
-        escribirPlatos();   
+        if (menuSemanal == null){
+            jtxtAreaPlatos.append("NO HAY PLATOS SEMANALES REGISTRADOS"+"\n");
+            jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
+            jtxtAreaPlatos.append("EN ESTE RESTAURANTE");
+            jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
+        }else{         
+            escribirPlatos();       
+        }
         jtxtAreaPlatos.setEditable(false);
     }
     
@@ -54,16 +66,6 @@ public class GUIListaPlatosCliente extends javax.swing.JFrame {
             jtxtAreaPlatos.append("-----------------------------------------------------------------------------------" + "\n");
             jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
         }
-    }
-    public void actualizarPlato(Plato plato){
-        jtxtAreaPlatos.append(plato.getAtrNombre() + "\n");
-        jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
-        jtxtAreaPlatos.append(plato.getAtrDescripcion() + "\n");
-        jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
-        jtxtAreaPlatos.append("$"+plato.getAtrPrecio() + "\n");
-        jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
-        jtxtAreaPlatos.append("-----------------------------------------------------------------------------------" + "\n");
-        jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
     }
 
     /**
@@ -145,7 +147,7 @@ public class GUIListaPlatosCliente extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new GUIListaPlatosCliente().setVisible(true);
+                    GUIListaPlatosCliente.getInstance("").setVisible(true);
                 } catch (Exception ex) {
                     Logger.getLogger(GUIListaPlatosCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
