@@ -25,21 +25,20 @@ public class GUIListaPlatos extends javax.swing.JInternalFrame {
     public GUIListaPlatos() throws Exception {
         initComponents();
         //Poner el icono de la aplicación
-        Image icon = Toolkit.getDefaultToolkit().getImage("./src/recursos/logo.png");
-        //this.setIconImage(icon);
         ArrayList<Plato> menuSemanal = atrControlador.getMenuSemanal();
         String[] stringsPlatos = new String[menuSemanal.size()];
         int pos = 0;
         for (Plato plato:menuSemanal){
-            stringsPlatos[pos] = plato.toString();
-            pos++;
+            jtxtAreaPlatos.append(plato.getAtrNombre() + "\n");
+            jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
+            jtxtAreaPlatos.append(plato.getAtrDescripcion() + "\n");
+            jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
+            jtxtAreaPlatos.append("$"+plato.getAtrPrecio() + "\n");
+            jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
+            jtxtAreaPlatos.append("-----------------------------------------------------------------------------------" + "\n");
+            jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
         }
-        
-        jListPlatos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = stringsPlatos;
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jtxtAreaPlatos.setEditable(false);
     }
 
     /**
@@ -51,34 +50,14 @@ public class GUIListaPlatos extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListPlatos = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtxtAreaPlatos = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jScrollPane1.setViewportView(jListPlatos);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1625, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1605, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 659, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1)
-                    .addContainerGap()))
-        );
+        jtxtAreaPlatos.setColumns(20);
+        jtxtAreaPlatos.setRows(5);
+        jScrollPane2.setViewportView(jtxtAreaPlatos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,15 +65,15 @@ public class GUIListaPlatos extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(219, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(325, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,9 +120,8 @@ public class GUIListaPlatos extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> jListPlatos;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jtxtAreaPlatos;
     // End of variables declaration//GEN-END:variables
 
 }
