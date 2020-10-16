@@ -23,9 +23,12 @@ public class GUIAdicionarPlato extends JFrame {
         if (instance == null) {
             instance = new GUIAdicionarPlato();
             instance.initComponents();
+
             instance.setLocationRelativeTo(null);
+
         }
         return instance;
+        
     }
 
     /**
@@ -64,12 +67,50 @@ public class GUIAdicionarPlato extends JFrame {
 
         jLabel3.setText("Descripción");
 
-        txtNombre.setText("*");
+        txtNombre.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtNombreCaretUpdate(evt);
+            }
+        });
+        txtNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNombreMouseClicked(evt);
+            }
+        });
+        txtNombre.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                txtNombreInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
 
-        txtPrecio.setText("-");
+        txtPrecio.setEnabled(false);
+        txtPrecio.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtPrecioCaretUpdate(evt);
+            }
+        });
         txtPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecioActionPerformed(evt);
+            }
+        });
+
+        txtDescripcion.setEnabled(false);
+        txtDescripcion.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtDescripcionCaretUpdate(evt);
+            }
+        });
+        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescripcionActionPerformed(evt);
             }
         });
 
@@ -109,6 +150,7 @@ public class GUIAdicionarPlato extends JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnAgregar.setText("Agregar");
+        btnAgregar.setEnabled(false);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -202,29 +244,82 @@ public class GUIAdicionarPlato extends JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
                     Plato plato = new Plato();
                     plato.setAtrNombre(txtNombre.getText());
-                    plato.setAtrPrecio(Integer.parseInt(txtPrecio.getText()));
                     plato.setAtrDescripcion(txtDescripcion.getText());
-                try {
-                    miControlador.addMenuSemanal(plato);
-                    successMessage("Plato agregado con éxito.", "Atención");
-                    clearControls();
-                    GUIPagPrincipalRestaurante ins = GUIPagPrincipalRestaurante.getInstance();
-                    ins.actualizarPlato(plato);
-                    
-                } catch (Exception ex) {
-                    Logger.getLogger(GUIAdicionarPlato.class.getName()).log(Level.SEVERE, null, ex);
-                    successMessage(ex.getMessage(), "Atención");
-                }
+                    try {
+                        plato.setAtrPrecio(Integer.parseInt(txtPrecio.getText()));
+                        try {
+                            miControlador.addMenuSemanal(plato);
+                            successMessage("Plato agregado con éxito.", "Atención");
+                            clearControls();
+                            GUIPagPrincipalRestaurante ins = GUIPagPrincipalRestaurante.getInstance();
+                            txtPrecio.setEnabled(false);
+                            txtDescripcion.setEnabled(false);
+                            txtPrecio.setEditable(false);
+                            txtDescripcion.setEditable(false);
+                            btnAgregar.setEnabled(false);
+                        } catch (Exception ex) {
+                            Logger.getLogger(GUIAdicionarPlato.class.getName()).log(Level.SEVERE, null, ex);
+                            successMessage(ex.getMessage(), "Atención");
+                        } 
+                    } catch (NumberFormatException ex) {
+                        successMessage("Numero incorrecto", "Atención");
+                    }  
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
+        clearControls();
+        txtPrecio.setEnabled(false);
+        txtDescripcion.setEnabled(false);
+        btnAgregar.setEnabled(false);
+        txtPrecio.setEditable(false);
+        txtDescripcion.setEditable(false);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtPrecioActionPerformed
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtDescripcionActionPerformed
+
+    private void txtNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreMouseClicked
+
+    private void txtNombreInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtNombreInputMethodTextChanged
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtNombreInputMethodTextChanged
+
+    private void txtNombreCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNombreCaretUpdate
+        // TODO add your handling code here:
+            txtPrecio.setEnabled(true);
+            txtPrecio.setEditable(true);
+    }//GEN-LAST:event_txtNombreCaretUpdate
+
+    private void txtPrecioCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtPrecioCaretUpdate
+        // TODO add your handling code here:
+        if(txtPrecio.isEnabled() == true)
+            txtDescripcion.setEnabled(true); 
+            txtDescripcion.setEditable(true);
+    }//GEN-LAST:event_txtPrecioCaretUpdate
+
+    private void txtDescripcionCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtDescripcionCaretUpdate
+        // TODO add your handling code here:
+        if(txtDescripcion.isEnabled() == true)
+        btnAgregar.setEnabled(true);
+        txtDescripcion.setEditable(true);
+    }//GEN-LAST:event_txtDescripcionCaretUpdate
     
     public void clearControls() {
         txtNombre.setText("");
