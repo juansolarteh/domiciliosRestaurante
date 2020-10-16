@@ -29,7 +29,7 @@ public class GUIPagPrincipalCliente extends JPanel {
     private static JFrame marco;
     
     
-    private GUIPagPrincipalCliente() throws Exception {
+    GUIPagPrincipalCliente() throws Exception {
         super();
         BoxLayout by = new BoxLayout(this, BoxLayout.Y_AXIS);
         setLayout(by);

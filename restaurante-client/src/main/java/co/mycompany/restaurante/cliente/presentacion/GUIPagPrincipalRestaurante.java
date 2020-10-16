@@ -28,7 +28,7 @@ public class GUIPagPrincipalRestaurante extends javax.swing.JFrame {
     /**
      * Creates new form JFramePagPrincipalRestaurante
      */
-    private GUIPagPrincipalRestaurante() throws Exception {
+    GUIPagPrincipalRestaurante() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         escribirPlatos();   
@@ -96,7 +96,7 @@ public class GUIPagPrincipalRestaurante extends javax.swing.JFrame {
         mnuGestionRestaurante.add(mnuItmAgregarMenuSemanal);
         mnuGestionRestaurante.add(jSeparator1);
 
-        mnuItmSalir.setText("Salir");
+        mnuItmSalir.setText("Cerrar sesión");
         mnuItmSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuItmSalirActionPerformed(evt);
@@ -136,7 +136,7 @@ public class GUIPagPrincipalRestaurante extends javax.swing.JFrame {
 
     private void mnuItmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItmSalirActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_mnuItmSalirActionPerformed
 
     private void mnuItmAgregarMenuSemanalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItmAgregarMenuSemanalActionPerformed
