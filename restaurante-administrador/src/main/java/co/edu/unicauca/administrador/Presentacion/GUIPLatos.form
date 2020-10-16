@@ -75,6 +75,7 @@
                 <LineBorder/>
               </Border>
             </Property>
+            <Property name="alignmentX" type="float" value="1.5"/>
           </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
@@ -132,6 +133,15 @@
           </Constraints>
         </Component>
       </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+          <BorderConstraints direction="Last"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
     </Container>
   </SubComponents>
 </Form>

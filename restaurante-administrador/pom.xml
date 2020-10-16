@@ -5,6 +5,19 @@
     <artifactId>Administrador</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE120</version>
+        </dependency>
+        <dependency>
+            <groupId>co.mycompany</groupId>
+            <artifactId>restaurante-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>

@@ -14,7 +14,7 @@ public class GUIPLatos extends javax.swing.JInternalFrame {
     public GUIPLatos() {
         initComponents();
 
-        setSize(870, 500);
+        setSize(100, 100);
         fijarMensajeExplicacion();
         btnAgregar.setVisible(false);
 
@@ -55,6 +55,7 @@ public class GUIPLatos extends javax.swing.JInternalFrame {
         btnCerrar = new javax.swing.JButton();
         pnlNorte = new javax.swing.JPanel();
         lblExplicacion = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setClosable(true);
         setMaximizable(true);
@@ -80,6 +81,7 @@ public class GUIPLatos extends javax.swing.JInternalFrame {
         pnlCentro.add(txtAddress);
 
         pnlSur.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlSur.setAlignmentX(1.5F);
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/agregar.png"))); // NOI18N
         btnAgregar.setText("Agregar");
@@ -115,8 +117,7 @@ public class GUIPLatos extends javax.swing.JInternalFrame {
         pnlNorte.add(lblExplicacion, gridBagConstraints);
 
         getContentPane().add(pnlNorte, java.awt.BorderLayout.NORTH);
-
-        getAccessibleContext().setAccessibleName("Agregar Platos");
+        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -163,6 +164,7 @@ public class GUIPLatos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCerrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblExplicacion;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JPanel pnlCentro;
