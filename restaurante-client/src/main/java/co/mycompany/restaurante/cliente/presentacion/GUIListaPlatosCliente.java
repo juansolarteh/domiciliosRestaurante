@@ -43,7 +43,14 @@ public class GUIListaPlatosCliente extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         menuSemanal = atrControlador.getMenuSemanal(Integer.parseInt(strIdrest));
-        escribirPlatos();   
+        if (menuSemanal == null){
+            jtxtAreaPlatos.append("NO HAY PLATOS SEMANALES REGISTRADOS"+"\n");
+            jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
+            jtxtAreaPlatos.append("EN ESTE RESTAURANTE");
+            jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
+        }else{         
+            escribirPlatos();       
+        }
         jtxtAreaPlatos.setEditable(false);
     }
     
@@ -59,16 +66,6 @@ public class GUIListaPlatosCliente extends javax.swing.JFrame {
             jtxtAreaPlatos.append("-----------------------------------------------------------------------------------" + "\n");
             jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
         }
-    }
-    public void actualizarPlato(Plato plato){
-        jtxtAreaPlatos.append(plato.getAtrNombre() + "\n");
-        jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
-        jtxtAreaPlatos.append(plato.getAtrDescripcion() + "\n");
-        jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
-        jtxtAreaPlatos.append("$"+plato.getAtrPrecio() + "\n");
-        jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
-        jtxtAreaPlatos.append("-----------------------------------------------------------------------------------" + "\n");
-        jtxtAreaPlatos.setCaretPosition(jtxtAreaPlatos.getDocument().getLength());
     }
 
     /**

@@ -51,26 +51,31 @@ public class GUIPagPrincipalCliente extends JPanel {
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         GUIPagPrincipalCliente panel = new GUIPagPrincipalCliente();
-        marco.setContentPane(panel);
+        marco.setContentPane(panel);    
+        if (restaurantes != null){
+            for (Restaurante rest: restaurantes){
+                JTextArea jTextArea1 = crearTextAreaRestaurante(rest);
+                jTextArea1.setName(Integer.toString(rest.getAtrId()));
+                jTextArea1.setEditable(false);
+                marco.add(jTextArea1);
+                marco.add(new javax.swing.JPopupMenu.Separator());
 
-        for (Restaurante rest: restaurantes){
-            JTextArea jTextArea1 = crearTextAreaRestaurante(rest);
-            jTextArea1.setName(Integer.toString(rest.getAtrId()));
+                //Añadir evento click
+                jTextArea1.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt){
+                        try {
+                            jTextArea1MouseClicked(evt, jTextArea1.getName());
+                        } catch (Exception ex) {
+                            Logger.getLogger(GUIPagPrincipalCliente.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                });
+
+            }
+        }else{
+            JTextArea jTextArea1 = new JTextArea("NO HAY RESTAURANTES REGISTRADOS EN EL SERVIDOR");
             jTextArea1.setEditable(false);
             marco.add(jTextArea1);
-            marco.add(new javax.swing.JPopupMenu.Separator());
-            
-            //Añadir evento click
-            jTextArea1.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt){
-                    try {
-                        jTextArea1MouseClicked(evt, jTextArea1.getName());
-                    } catch (Exception ex) {
-                        Logger.getLogger(GUIPagPrincipalCliente.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            });
-            
         }
 
         marco.pack();
