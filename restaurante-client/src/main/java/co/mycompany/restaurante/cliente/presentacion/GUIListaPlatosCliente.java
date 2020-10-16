@@ -14,21 +14,21 @@ import java.util.logging.Logger;
  *
  * @author juan-
  */
-public class GUIPagPrincipalRestaurante extends javax.swing.JFrame {
+public class GUIListaPlatosCliente extends javax.swing.JFrame {
 
     private ControladorAdministrador atrControlador = ControladorAdministrador.getInstance();
     
-    private static GUIPagPrincipalRestaurante instance;
-    public static GUIPagPrincipalRestaurante getInstance() throws Exception {
+    private static GUIListaPlatosCliente instance;
+    public static GUIListaPlatosCliente getInstance() throws Exception {
         if (instance == null) {
-            instance = new GUIPagPrincipalRestaurante();
+            instance = new GUIListaPlatosCliente();
         }
         return instance;
     }
     /**
      * Creates new form JFramePagPrincipalRestaurante
      */
-    private GUIPagPrincipalRestaurante() throws Exception {
+    private GUIListaPlatosCliente() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         escribirPlatos();   
@@ -73,44 +73,12 @@ public class GUIPagPrincipalRestaurante extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtxtAreaPlatos = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
-        mnuGestionRestaurante = new javax.swing.JMenu();
-        mnuItmAgregarMenuSemanal = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        mnuItmSalir = new javax.swing.JMenuItem();
-        mnuEmpleadoLogueado = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jtxtAreaPlatos.setColumns(20);
         jtxtAreaPlatos.setRows(5);
         jScrollPane1.setViewportView(jtxtAreaPlatos);
-
-        mnuGestionRestaurante.setText("Gestion Restaurante");
-
-        mnuItmAgregarMenuSemanal.setText("Agregar menu semanal");
-        mnuItmAgregarMenuSemanal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuItmAgregarMenuSemanalActionPerformed(evt);
-            }
-        });
-        mnuGestionRestaurante.add(mnuItmAgregarMenuSemanal);
-        mnuGestionRestaurante.add(jSeparator1);
-
-        mnuItmSalir.setText("Salir");
-        mnuItmSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuItmSalirActionPerformed(evt);
-            }
-        });
-        mnuGestionRestaurante.add(mnuItmSalir);
-
-        jMenuBar1.add(mnuGestionRestaurante);
-
-        mnuEmpleadoLogueado.setBackground(java.awt.Color.magenta);
-        mnuEmpleadoLogueado.setForeground(java.awt.SystemColor.activeCaption);
-        mnuEmpleadoLogueado.setText("Usuario_logueado");
-        mnuEmpleadoLogueado.setEnabled(false);
-        jMenuBar1.add(mnuEmpleadoLogueado);
 
         setJMenuBar(jMenuBar1);
 
@@ -127,24 +95,12 @@ public class GUIPagPrincipalRestaurante extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void mnuItmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItmSalirActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_mnuItmSalirActionPerformed
-
-    private void mnuItmAgregarMenuSemanalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItmAgregarMenuSemanalActionPerformed
-
-        GUIAdicionarPlato ins = GUIAdicionarPlato.getInstance();
-        ins.show();
-
-    }//GEN-LAST:event_mnuItmAgregarMenuSemanalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,14 +119,20 @@ public class GUIPagPrincipalRestaurante extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIPagPrincipalRestaurante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIListaPlatosCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIPagPrincipalRestaurante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIListaPlatosCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIPagPrincipalRestaurante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIListaPlatosCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIPagPrincipalRestaurante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIListaPlatosCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -178,9 +140,9 @@ public class GUIPagPrincipalRestaurante extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new GUIPagPrincipalRestaurante().setVisible(true);
+                    new GUIListaPlatosCliente().setVisible(true);
                 } catch (Exception ex) {
-                    Logger.getLogger(GUIPagPrincipalRestaurante.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GUIListaPlatosCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -189,11 +151,6 @@ public class GUIPagPrincipalRestaurante extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTextArea jtxtAreaPlatos;
-    private javax.swing.JMenu mnuEmpleadoLogueado;
-    private javax.swing.JMenu mnuGestionRestaurante;
-    private javax.swing.JMenuItem mnuItmAgregarMenuSemanal;
-    private javax.swing.JMenuItem mnuItmSalir;
     // End of variables declaration//GEN-END:variables
 }

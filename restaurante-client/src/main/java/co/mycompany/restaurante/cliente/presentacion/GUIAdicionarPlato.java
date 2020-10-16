@@ -23,7 +23,9 @@ public class GUIAdicionarPlato extends JFrame {
         if (instance == null) {
             instance = new GUIAdicionarPlato();
             instance.initComponents();
-            
+
+            instance.setLocationRelativeTo(null);
+
         }
         return instance;
         
