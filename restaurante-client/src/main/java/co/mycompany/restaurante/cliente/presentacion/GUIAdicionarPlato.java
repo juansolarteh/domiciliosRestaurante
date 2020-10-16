@@ -78,10 +78,10 @@ public class GUIAdicionarPlato extends JFrame {
             }
         });
         txtNombre.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtNombreInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -244,7 +244,21 @@ public class GUIAdicionarPlato extends JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
                     Plato plato = new Plato();
                     plato.setAtrNombre(txtNombre.getText());
+                    
                     plato.setAtrDescripcion(txtDescripcion.getText());
+                    if("".equals(txtNombre.getText()))
+                    {
+                        successMessage("Campo nombre vacío.", "Atención");
+                    }
+                    else if("".equals(txtPrecio.getText()))
+                    {
+                        successMessage("Campo precio vacío.", "Atención");
+                    }
+                    else if("".equals(txtDescripcion.getText()))
+                    {
+                        successMessage("Campo descripción vacío.", "Atención");
+                    }
+                    else{
                     try {
                         plato.setAtrPrecio(Integer.parseInt(txtPrecio.getText()));
                         try {
@@ -263,8 +277,9 @@ public class GUIAdicionarPlato extends JFrame {
                             successMessage(ex.getMessage(), "Atención");
                         } 
                     } catch (NumberFormatException ex) {
-                        successMessage("Numero incorrecto", "Atención");
+                        successMessage("Precio incorrecto", "Atención");
                     }  
+                    }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -310,16 +325,19 @@ public class GUIAdicionarPlato extends JFrame {
 
     private void txtPrecioCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtPrecioCaretUpdate
         // TODO add your handling code here:
-        if(txtPrecio.isEnabled() == true)
+        String var = txtNombre.getText();
+        if(txtPrecio.isEnabled() == true){
             txtDescripcion.setEnabled(true); 
             txtDescripcion.setEditable(true);
+        }
     }//GEN-LAST:event_txtPrecioCaretUpdate
 
     private void txtDescripcionCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtDescripcionCaretUpdate
         // TODO add your handling code here:
-        if(txtDescripcion.isEnabled() == true)
+        if(txtDescripcion.isEnabled() == true){
         btnAgregar.setEnabled(true);
         txtDescripcion.setEditable(true);
+        }
     }//GEN-LAST:event_txtDescripcionCaretUpdate
     
     public void clearControls() {
