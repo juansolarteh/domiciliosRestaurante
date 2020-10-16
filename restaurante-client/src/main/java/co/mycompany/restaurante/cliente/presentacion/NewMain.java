@@ -23,17 +23,52 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextArea;
 
-public class GUIPagPrincipalCliente extends JPanel {
+public class NewMain extends JFrame {
 
     private static ControladorCliente controlador = ControladorCliente.getInstance();
-    private static JFrame marco;
     
-    
-    private GUIPagPrincipalCliente() throws Exception {
-        super();
-        BoxLayout by = new BoxLayout(this, BoxLayout.Y_AXIS);
-        setLayout(by);
+    private static NewMain instance;
+    public static NewMain getInstance() throws Exception {
+        if (instance == null) {
+            instance = new NewMain();
+        }
+        return instance;
     }
+    
+    private NewMain() throws Exception {
+        initComponents();
+        ArrayList<Restaurante> restaurantes = controlador.getRestaurantes();
+        
+        for (Restaurante rest: restaurantes){
+            JTextArea jTextArea1 = crearTextAreaRestaurante(rest);    
+            jTextArea1.setEditable(false);
+            this.add(jTextArea1);
+            this.add(new javax.swing.JPopupMenu.Separator());
+            
+            //Añadir evento click
+            jTextArea1.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt){
+                    try {
+                        jTextArea1MouseClicked(evt, jTextArea1);
+                    } catch (Exception ex) {
+                        Logger.getLogger(NewMain.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            
+        }
+        pack();
+        setLocationRelativeTo(null);
+    }
+    
+    private void initComponents() {
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panel = new JPanel();
+        by = new BoxLayout(panel, BoxLayout.Y_AXIS);
+        panel.setLayout(by);
+        this.setContentPane(panel);      
+    }
+    
     
     private static JTextArea crearTextAreaRestaurante(Restaurante rest){
         JTextArea jTextAreaRestaurante = new JTextArea();
@@ -43,54 +78,27 @@ public class GUIPagPrincipalCliente extends JPanel {
         jTextAreaRestaurante.setCaretPosition(jTextAreaRestaurante.getDocument().getLength());
         jTextAreaRestaurante.append("$"+rest.getAtrTelefono()+ "\n");
         return jTextAreaRestaurante;
-    }
-    
-    private static void crearYMostrarGUI() throws Exception {
-        ArrayList<Restaurante> restaurantes = controlador.getRestaurantes();
-        marco = new JFrame();
-        marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        GUIPagPrincipalCliente panel = new GUIPagPrincipalCliente();
-        marco.setContentPane(panel);
-
-        for (Restaurante rest: restaurantes){
-            JTextArea jTextArea1 = crearTextAreaRestaurante(rest);    
-            jTextArea1.setEditable(false);
-            marco.add(jTextArea1);
-            marco.add(new javax.swing.JPopupMenu.Separator());
-            
-            //Añadir evento click
-            jTextArea1.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt){
-                    try {
-                        jTextArea1MouseClicked(evt, jTextArea1);
-                    } catch (Exception ex) {
-                        Logger.getLogger(GUIPagPrincipalCliente.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            });
-            
-        }
-
-        marco.pack();
-        marco.setLocationRelativeTo(null);
-        marco.setVisible(true);
-    }
+    } 
     
     private static void jTextArea1MouseClicked(java.awt.event.MouseEvent evt, JTextArea jta) throws Exception {                                        
-        GUIListaPlatosCliente instance = GUIListaPlatosCliente.getInstance();
-        instance.show();
-    }         
+        GUIListaPlatosCliente ins = GUIListaPlatosCliente.getInstance();
+        ins.show();
+    }        
 
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    crearYMostrarGUI();
+                    instance.getInstance().setVisible(true);
                 } catch (Exception ex) {
-                    Logger.getLogger(GUIPagPrincipalCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NewMain.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
+    
+    //Declaracion de variables no modificar
+    private JPanel panel;
+    private BoxLayout by;
 }
+
