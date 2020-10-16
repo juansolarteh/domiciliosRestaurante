@@ -4,14 +4,11 @@
  * and open the template in the editor.
  */
 package co.mycompany.restaurante.cliente.presentacion;
-//import co.mycompany.restaurante.cliente.presentacion.ControladorCliente;
 
 //import co.unicauca.travelagency.commons.infra.Utilities;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.Image;
 import java.awt.Toolkit;
-import co.mycompany.restaurante.commons.domain.Plato;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,34 +16,21 @@ import java.util.logging.Logger;
  *
  * @author libardo
  */
-public class GUIMenu extends javax.swing.JFrame {   
+public class GUIMenu1 extends javax.swing.JFrame {
+
     /**
      * Creates new form GUIMenu
      */
-    ControladorAdministrador atrControlador = ControladorAdministrador.getInstance();
-
-    public GUIMenu() throws Exception {
+    public GUIMenu1() throws Exception {
         initComponents();
         //Poner el icono de la aplicación
-        Image icon = Toolkit.getDefaultToolkit().getImage("./src/recursos/logo.png");
-        this.setIconImage(icon);
-        
-        ArrayList<Plato> menuSemanal = atrControlador.getMenuSemanal();
-        String[] stringsPlatos = new String[menuSemanal.size()];
-        int pos = 0;
-        for (Plato plato:menuSemanal){
-            jTextArea1.append(plato.getAtrNombre() + "\n");
-            jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
-            jTextArea1.append(plato.getAtrDescripcion() + "\n");
-            jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
-            jTextArea1.append("$"+plato.getAtrPrecio() + "\n");
-            jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
-            jTextArea1.append("-----------------------------------------------------------------------------------" + "\n");
-            jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
-        }
-        jTextArea1.setEditable(false);
-       
+        GUIListaPlatos ins = new GUIListaPlatos();
+        ins.setMaximizable(true);
+
+        dskEscritorio.add(ins);
+        ins.show();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,10 +40,13 @@ public class GUIMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dskEscritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuPaqueteTodoIncluido = new javax.swing.JMenu();
-        mnuGestionPlatos = new javax.swing.JMenuItem();
+        mnuConsultarClientes = new javax.swing.JMenuItem();
+        mnuPaquetesPersonalizados = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        mnuPaquetesTodoIncluido = new javax.swing.JMenuItem();
         mnuSalir = new javax.swing.JMenuItem();
         mnuEmpleadoLogueado = new javax.swing.JMenu();
 
@@ -68,14 +55,30 @@ public class GUIMenu extends javax.swing.JFrame {
 
         mnuPaqueteTodoIncluido.setText("Gestion Restaurante");
 
-        mnuGestionPlatos.setText("Gestión de Platos");
-        mnuGestionPlatos.addActionListener(new java.awt.event.ActionListener() {
+        mnuConsultarClientes.setText("Gestión de Clientes");
+        mnuConsultarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuGestionPlatosActionPerformed(evt);
+                mnuConsultarClientesActionPerformed(evt);
             }
         });
-        mnuPaqueteTodoIncluido.add(mnuGestionPlatos);
+        mnuPaqueteTodoIncluido.add(mnuConsultarClientes);
+
+        mnuPaquetesPersonalizados.setText("Paquetes Personalizados");
+        mnuPaquetesPersonalizados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPaquetesPersonalizadosActionPerformed(evt);
+            }
+        });
+        mnuPaqueteTodoIncluido.add(mnuPaquetesPersonalizados);
         mnuPaqueteTodoIncluido.add(jSeparator1);
+
+        mnuPaquetesTodoIncluido.setText("Paquetes todo incluido");
+        mnuPaquetesTodoIncluido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPaquetesTodoIncluidoActionPerformed(evt);
+            }
+        });
+        mnuPaqueteTodoIncluido.add(mnuPaquetesTodoIncluido);
 
         mnuSalir.setText("Salir");
         mnuSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -99,36 +102,53 @@ public class GUIMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1722, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(dskEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1777, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 673, Short.MAX_VALUE)
+            .addComponent(dskEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void mnuPaquetesPersonalizadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPaquetesPersonalizadosActionPerformed
+//        //GUICustomizerPackage ins = GUICustomizerPackage.getInstancia();
+//        ins.setMaximizable(true);
+//
+//        dskEscritorio.add(ins);
+//        ins.show();
+    }//GEN-LAST:event_mnuPaquetesPersonalizadosActionPerformed
 
     private void mnuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSalirActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_mnuSalirActionPerformed
 
+    private void mnuPaquetesTodoIncluidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPaquetesTodoIncluidoActionPerformed
+//        GUIAllInOnePackage ins = new GUIAllInOnePackage();
+//        ins.setMaximizable(true);
+//
+//        dskEscritorio.add(ins);
+//        ins.show();
+    }//GEN-LAST:event_mnuPaquetesTodoIncluidoActionPerformed
 
-    private void mnuGestionPlatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGestionPlatosActionPerformed
-  
-        //GUICustomer ins = new GUICustomer();
-        //ins.setMaximizable(true);
-        //dskEscritorio.add(ins);
-        //ins.show();
-    }//GEN-LAST:event_mnuGestionPlatosActionPerformed
+    private void mnuConsultarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultarClientesActionPerformed
+        
+//        GUICustomer ins = new GUICustomer();
+//        ins.setMaximizable(true);
+//
+//        dskEscritorio.add(ins);
+//        ins.show();
+        
+    }//GEN-LAST:event_mnuConsultarClientesActionPerformed
 
-   
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) throws Exception {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -142,13 +162,13 @@ public class GUIMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIMenu1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIMenu1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIMenu1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIMenu1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -157,24 +177,25 @@ public class GUIMenu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    GUIMenu ins = new GUIMenu();
+                    GUIMenu1 ins = new GUIMenu1();
                     ins.setExtendedState(MAXIMIZED_BOTH);
                     ins.setVisible(true);
                 } catch (Exception ex) {
-                    Logger.getLogger(GUIMenu.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GUIMenu1.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane dskEscritorio;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenuItem mnuConsultarClientes;
     private javax.swing.JMenu mnuEmpleadoLogueado;
-    private javax.swing.JMenuItem mnuGestionPlatos;
     private javax.swing.JMenu mnuPaqueteTodoIncluido;
+    private javax.swing.JMenuItem mnuPaquetesPersonalizados;
+    private javax.swing.JMenuItem mnuPaquetesTodoIncluido;
     private javax.swing.JMenuItem mnuSalir;
     // End of variables declaration//GEN-END:variables
 
