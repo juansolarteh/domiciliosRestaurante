@@ -50,6 +50,7 @@ public class GUIPagPrincipalCliente extends JPanel {
         marco = new JFrame();
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        
         GUIPagPrincipalCliente panel = new GUIPagPrincipalCliente();
         marco.setContentPane(panel);    
         if (restaurantes != null){
@@ -78,7 +79,8 @@ public class GUIPagPrincipalCliente extends JPanel {
             marco.add(jTextArea1);
         }
 
-        marco.pack();
+        marco.pack(); 
+        marco.setSize(500,500);
         marco.setVisible(true);
     }
     
