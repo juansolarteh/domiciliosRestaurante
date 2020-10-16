@@ -5,6 +5,7 @@
  */
 package co.mycompany.restaurante.cliente.presentacion;
 
+import static co.mycompany.restaurante.cliente.infra.Messages.successMessage;
 import co.mycompany.restaurante.commons.domain.Plato;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,18 +51,27 @@ public class GUIAdicionarPlato extends JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jInternalFrame1.setTitle("Agregar Platos");
         jInternalFrame1.setVisible(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setText("*Nombre");
+        jLabel1.setText("Nombre");
 
-        jLabel2.setText("*Precio");
+        jLabel2.setText("Precio");
 
-        jLabel3.setText("*Descripción");
+        jLabel3.setText("Descripción");
+
+        txtNombre.setText("*");
+
+        txtPrecio.setText("-");
+        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -190,17 +200,21 @@ public class GUIAdicionarPlato extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        Plato plato = new Plato();
-        plato.setAtrNombre(txtNombre.getText());
-        plato.setAtrPrecio(Integer.parseInt(txtPrecio.getText()));
-        plato.setAtrDescripcion(txtDescripcion.getText());
-            try {
-                String mensaje = miControlador.addMenuSemanal(plato);
-                GUIPagPrincipalRestaurante ins = GUIPagPrincipalRestaurante.getInstance();
-                ins.actualizarPlato(plato);
-            } catch (Exception ex) {
-                Logger.getLogger(GUIAdicionarPlato.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                    Plato plato = new Plato();
+                    plato.setAtrNombre(txtNombre.getText());
+                    plato.setAtrPrecio(Integer.parseInt(txtPrecio.getText()));
+                    plato.setAtrDescripcion(txtDescripcion.getText());
+                try {
+                    miControlador.addMenuSemanal(plato);
+                    successMessage("Plato agregado con éxito.", "Atención");
+                    clearControls();
+                    GUIPagPrincipalRestaurante ins = GUIPagPrincipalRestaurante.getInstance();
+                    ins.actualizarPlato(plato);
+                    
+                } catch (Exception ex) {
+                    Logger.getLogger(GUIAdicionarPlato.class.getName()).log(Level.SEVERE, null, ex);
+                    successMessage(ex.getMessage(), "Atención");
+                }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -208,6 +222,16 @@ public class GUIAdicionarPlato extends JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioActionPerformed
+    
+    public void clearControls() {
+        txtNombre.setText("");
+        txtPrecio.setText("");
+        txtDescripcion.setText("");
+    }
+    
     /**
      * @param args the command line arguments
      */
