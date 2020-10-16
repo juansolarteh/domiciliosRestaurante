@@ -30,19 +30,22 @@ public class GUIMenu extends javax.swing.JFrame {
         //Poner el icono de la aplicación
         Image icon = Toolkit.getDefaultToolkit().getImage("./src/recursos/logo.png");
         this.setIconImage(icon);
+        
         ArrayList<Plato> menuSemanal = atrControlador.getMenuSemanal();
         String[] stringsPlatos = new String[menuSemanal.size()];
         int pos = 0;
         for (Plato plato:menuSemanal){
-            stringsPlatos[pos] = plato.toString();
-            pos++;
+            jTextArea1.append(plato.getAtrNombre() + "\n");
+            jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
+            jTextArea1.append(plato.getAtrDescripcion() + "\n");
+            jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
+            jTextArea1.append("$"+plato.getAtrPrecio() + "\n");
+            jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
+            jTextArea1.append("-----------------------------------------------------------------------------------" + "\n");
+            jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
         }
-        
-        jListPlatos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = stringsPlatos;
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jTextArea1.setEditable(false);
+       
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,9 +56,8 @@ public class GUIMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dskEscritorio = new javax.swing.JDesktopPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListPlatos = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuPaqueteTodoIncluido = new javax.swing.JMenu();
         mnuGestionPlatos = new javax.swing.JMenuItem();
@@ -66,7 +68,9 @@ public class GUIMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agencia de viajes");
 
-        jScrollPane1.setViewportView(jListPlatos);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
 
         mnuPaqueteTodoIncluido.setText("Gestion Restaurante");
 
@@ -103,17 +107,14 @@ public class GUIMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1734, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dskEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dskEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -181,11 +182,10 @@ public class GUIMenu extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane dskEscritorio;
-    private javax.swing.JList<String> jListPlatos;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JMenu mnuEmpleadoLogueado;
     private javax.swing.JMenuItem mnuGestionPlatos;
     private javax.swing.JMenu mnuPaqueteTodoIncluido;
