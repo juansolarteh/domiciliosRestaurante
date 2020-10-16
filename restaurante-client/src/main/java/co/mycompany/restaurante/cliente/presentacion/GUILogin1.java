@@ -19,6 +19,7 @@ public class GUILogin1 extends javax.swing.JFrame {
      */
     public GUILogin1() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
