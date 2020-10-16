@@ -44,41 +44,23 @@ public class GUIMenu1 extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuPaqueteTodoIncluido = new javax.swing.JMenu();
         mnuConsultarClientes = new javax.swing.JMenuItem();
-        mnuPaquetesPersonalizados = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        mnuPaquetesTodoIncluido = new javax.swing.JMenuItem();
         mnuSalir = new javax.swing.JMenuItem();
         mnuEmpleadoLogueado = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agencia de viajes");
 
-        mnuPaqueteTodoIncluido.setText("Gestion Restaurante");
+        mnuPaqueteTodoIncluido.setText("Gestion Restaurantes");
 
-        mnuConsultarClientes.setText("Gestión de Clientes");
+        mnuConsultarClientes.setText("Agregar Platos");
         mnuConsultarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuConsultarClientesActionPerformed(evt);
             }
         });
         mnuPaqueteTodoIncluido.add(mnuConsultarClientes);
-
-        mnuPaquetesPersonalizados.setText("Paquetes Personalizados");
-        mnuPaquetesPersonalizados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuPaquetesPersonalizadosActionPerformed(evt);
-            }
-        });
-        mnuPaqueteTodoIncluido.add(mnuPaquetesPersonalizados);
         mnuPaqueteTodoIncluido.add(jSeparator1);
-
-        mnuPaquetesTodoIncluido.setText("Paquetes todo incluido");
-        mnuPaquetesTodoIncluido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuPaquetesTodoIncluidoActionPerformed(evt);
-            }
-        });
-        mnuPaqueteTodoIncluido.add(mnuPaquetesTodoIncluido);
 
         mnuSalir.setText("Salir");
         mnuSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -114,34 +96,17 @@ public class GUIMenu1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mnuPaquetesPersonalizadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPaquetesPersonalizadosActionPerformed
-//        //GUICustomizerPackage ins = GUICustomizerPackage.getInstancia();
-//        ins.setMaximizable(true);
-//
-//        dskEscritorio.add(ins);
-//        ins.show();
-    }//GEN-LAST:event_mnuPaquetesPersonalizadosActionPerformed
-
     private void mnuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSalirActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_mnuSalirActionPerformed
 
-    private void mnuPaquetesTodoIncluidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPaquetesTodoIncluidoActionPerformed
-//        GUIAllInOnePackage ins = new GUIAllInOnePackage();
-//        ins.setMaximizable(true);
-//
-//        dskEscritorio.add(ins);
-//        ins.show();
-    }//GEN-LAST:event_mnuPaquetesTodoIncluidoActionPerformed
-
     private void mnuConsultarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultarClientesActionPerformed
         
-//        GUICustomer ins = new GUICustomer();
-//        ins.setMaximizable(true);
-//
-//        dskEscritorio.add(ins);
-//        ins.show();
+        GUIPlato ins = new GUIPlato();
+        ins.setMaximizable(true);
+        dskEscritorio.add(ins);
+        ins.show();
         
     }//GEN-LAST:event_mnuConsultarClientesActionPerformed
 
@@ -194,8 +159,6 @@ public class GUIMenu1 extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuConsultarClientes;
     private javax.swing.JMenu mnuEmpleadoLogueado;
     private javax.swing.JMenu mnuPaqueteTodoIncluido;
-    private javax.swing.JMenuItem mnuPaquetesPersonalizados;
-    private javax.swing.JMenuItem mnuPaquetesTodoIncluido;
     private javax.swing.JMenuItem mnuSalir;
     // End of variables declaration//GEN-END:variables
 

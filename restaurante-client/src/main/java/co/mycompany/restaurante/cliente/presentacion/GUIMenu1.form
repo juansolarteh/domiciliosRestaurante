@@ -6,34 +6,18 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="mnuPaqueteTodoIncluido">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gestion Restaurante"/>
+            <Property name="text" type="java.lang.String" value="Gestion Restaurantes"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mnuConsultarClientes">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Gesti&#xf3;n de Clientes"/>
+                <Property name="text" type="java.lang.String" value="Agregar Platos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuConsultarClientesActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuPaquetesPersonalizados">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Paquetes Personalizados"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuPaquetesPersonalizadosActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuPaquetesTodoIncluido">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Paquetes todo incluido"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuPaquetesTodoIncluidoActionPerformed"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuSalir">
               <Properties>
