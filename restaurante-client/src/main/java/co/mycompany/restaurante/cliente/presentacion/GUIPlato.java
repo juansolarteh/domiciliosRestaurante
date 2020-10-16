@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.unicauca.administrador.Presentacion;
+package co.mycompany.restaurante.cliente.presentacion;
 
-import co.mycompany.restaurante.cliente.presentacion.ControladorAdministrador;
 import co.mycompany.restaurante.commons.domain.Plato;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -229,7 +228,6 @@ public class GUIPlato extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(GUIPlato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
