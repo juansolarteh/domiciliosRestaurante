@@ -8,19 +8,22 @@ package co.mycompany.restaurante.cliente.presentacion;
 import co.mycompany.restaurante.commons.domain.Plato;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 /**
  *
  * @author Personal
  */
-public class GUIPlato extends javax.swing.JInternalFrame {
+public class GUIAdicionarPlato extends JFrame {
     
-    static ControladorAdministrador miControlador  = ControladorAdministrador.getInstance();
+    private static ControladorAdministrador miControlador  = ControladorAdministrador.getInstance();
     
-    /**
-     * Creates new form GUIPlato
-     */
-    public GUIPlato() {
-        initComponents();
+    private static GUIAdicionarPlato instance;
+    public static GUIAdicionarPlato getInstance() {
+        if (instance == null) {
+            instance = new GUIAdicionarPlato();
+            instance.initComponents();
+        }
+        return instance;
     }
 
     /**
@@ -46,7 +49,7 @@ public class GUIPlato extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jInternalFrame1.setTitle("Agregar Platos");
         jInternalFrame1.setVisible(true);
@@ -192,8 +195,10 @@ public class GUIPlato extends javax.swing.JInternalFrame {
         plato.setAtrDescripcion(txtDescripcion.getText());
             try {
                 String mensaje = miControlador.addMenuSemanal(plato);
+                GUIPagPrincipalRestaurante ins = GUIPagPrincipalRestaurante.getInstance();
+                ins.actualizarPlato(plato);
             } catch (Exception ex) {
-                Logger.getLogger(GUIPlato.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(GUIAdicionarPlato.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -219,20 +224,21 @@ public class GUIPlato extends javax.swing.JInternalFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIPlato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIAdicionarPlato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIPlato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIAdicionarPlato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIPlato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIAdicionarPlato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIPlato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIAdicionarPlato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUIPlato().setVisible(true);
+                new GUIAdicionarPlato().setVisible(true);
             }
         });
     }
